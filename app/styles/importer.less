@@ -7,10 +7,9 @@ ul, li, p, h1, h2, h3, h4, h5, h6 {
 
 // Overall site wrapper
 .site-wrapper {
-  padding: 20px;
   margin: 20px auto;
-  width: 1440px;
-  box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+  max-width: 1440px;
+  min-width: 640px;
 }
 
 // Overall site header
@@ -26,12 +25,38 @@ header {
 
 .home-layout {
 
+  .full-width {
+    width: 98%;
+    margin: 1%;
+    padding: 20px;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+  }
+
+  .half-width {
+    width: 48%;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+    margin: 1%;
+    padding: 20px;
+    min-height: 200px;
+    display: inline-block;
+  }
+
   .title-container {
     h2 {
       margin-bottom: 20px;
     }
   }
+
   p {
     margin-bottom: 20px;
+  }
+
+  .cta-container {
+    text-align: center;
+    .cta {
+      margin: 0 10px;
+      font-size: 20px;
+      padding: 10px;
+    }
   }
 }
