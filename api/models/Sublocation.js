@@ -19,15 +19,15 @@ module.exports = {
       required: true
     },
 
-    crag: {
-      model: 'Crag',
-      required: true
-    },
+    // crag: {
+    //   model: 'Crag',
+    //   required: true
+    // },
 
-    routes: {
-      collection: 'Route',
-      via: 'wall'
-    }
+    // routes: {
+    //   collection: 'Route',
+    //   via: 'wall'
+    // }
 
   },
 

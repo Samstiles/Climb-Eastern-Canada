@@ -14,10 +14,10 @@ module.exports = {
       required: true
     },
 
-    wall: {
-      model: 'Wall',
-      required: true
-    },
+    // wall: {
+    //   model: 'Wall',
+    //   required: true
+    // },
 
     pictures: {
       type: 'array'

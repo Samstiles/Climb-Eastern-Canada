@@ -44,10 +44,10 @@ module.exports = {
       required: true
     },
 
-    walls: {
-      collection: 'Wall',
-      via: 'crag'
-    },
+    // walls: {
+    //   collection: 'Wall',
+    //   via: 'crag'
+    // },
 
     parking_location_latitude: {
       type: 'string'
