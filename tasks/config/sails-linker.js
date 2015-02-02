@@ -18,13 +18,14 @@ module.exports = function(grunt) {
 			options: {
 				startTag: '<!--SCRIPTS-->',
 				endTag: '<!--SCRIPTS END-->',
-				fileTmpl: '<script src="%s"></script>',
+				fileTmpl: '<script type="text/javascript" src="%s"></script>',
 				appRoot: '.tmp/public'
 			},
 			files: {
 				'.tmp/public/**/*.html': require('../pipeline').jsFilesToInject,
 				'views/**/*.html': require('../pipeline').jsFilesToInject,
-				'views/**/*.ejs': require('../pipeline').jsFilesToInject
+				'views/**/*.ejs': require('../pipeline').jsFilesToInject,
+				'**/*.html': require('../pipeline').jsFilesToInject
 			}
 		},
 
@@ -39,7 +40,8 @@ module.exports = function(grunt) {
 			files: {
 				'.tmp/public/**/*.html': require('../pipeline').jsFilesToInject,
 				'views/**/*.html': require('../pipeline').jsFilesToInject,
-				'views/**/*.ejs': require('../pipeline').jsFilesToInject
+				'views/**/*.ejs': require('../pipeline').jsFilesToInject,
+				'index.html': require('../pipeline').jsFilesToInject
 			}
 		},
 
