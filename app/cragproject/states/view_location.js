@@ -4,13 +4,17 @@ CragProject.config(['$stateProvider',
     $stateProvider.state('view_location', {
       url: '/view_location/:slug',
       templateUrl: '/cragproject/states/view_location/view_location.template.html',
-      controller: 'ViewLocationController',
       controllerAs: 'ViewLocationCtrl',
       resolve: {
-        "_location": ['$stateParams', 'LocationModel', function($stateparams, LocationModel) {
+        "location": ['$stateParams', 'LocationModel', function($stateparams, LocationModel) {
           return true;
         }]
-      }
+      },
+      controller: ['location', function(location) {
+        var ctrl = this;
+        ctrl.location = location;
+        window.ViewLocationController = ctrl;
+      }]
     });
 
   }

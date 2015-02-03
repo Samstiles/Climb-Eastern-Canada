@@ -4,8 +4,11 @@ CragProject.config(['$stateProvider',
     $stateProvider.state('home', {
       url: '/home',
       templateUrl: '/cragproject/states/home/home.template.html',
-      controller: 'HomeController',
-      controllerAs: 'HomeCtrl'
+      controllerAs: 'HomeCtrl',
+      controller: ['$scope', function($scope) {
+        var ctrl = this;
+        window.HomeController = ctrl;
+      }]
     });
 
   }
