@@ -115,7 +115,7 @@ module.exports.routes = {
     action: 'update'
   },
 
-    /**
+  /**
    * DELETE (delete) routes
    */
   'DELETE /api/climb/:id': {
