@@ -89,7 +89,7 @@ module.exports = {
     if ( !values.name )
       return cb();
 
-    values.slug = UtilService.sluggifyString(values.name);
+    values.slug = SlugService.sluggifyString(values.name);
     return cb();
   }
 
