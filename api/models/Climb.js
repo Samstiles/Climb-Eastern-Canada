@@ -90,7 +90,7 @@ module.exports = {
     return cb();
   },
 
-  getRequiredFields: function() {
+  getRequiredAttributes: function() {
     var self = this;
     return _.keys(_.pick(self._attributes, function(value, key, object) {
       return "required" in object[key];
