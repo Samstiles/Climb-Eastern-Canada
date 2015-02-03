@@ -3,7 +3,7 @@ CragProject.config(['$stateProvider',
 
     $stateProvider.state('home', {
       url: '/home',
-      templateUrl: '/cragproject/states/home/home.template.html',
+      templateUrl: '/cragproject/states/home.template.html',
       controllerAs: 'HomeCtrl',
       controller: ['$scope', function($scope) {
         var ctrl = this;
