@@ -44,8 +44,12 @@ module.exports = {
       required: true
     },
 
-    Sublocations: {
-      collection: 'Sublocation',
+    sublocations: {
+      collection: 'Sublocation'
+    },
+
+    climbs: {
+      collection: 'Climb'
     },
 
     parking_location_latitude: {
