@@ -1,5 +1,5 @@
-CragProject.factory('Climb', ['',
-  function() {
+CragProject.factory('ClimbModel', ['SocketService', '$q',
+  function(SocketService, $q) {
 
     function Climb (climbData) {
       if (climbData) this.build(climbData);
@@ -17,6 +17,17 @@ CragProject.factory('Climb', ['',
 
       loadFromSlug: function(slug) {
         var self = this;
+        var deferred = $q.defer();
+
+        SocketService.get('/api/climb/findBySlug/' + slug, function(body, res) {
+          if (res.statusCode !== 200) deferred.reject(body);
+
+          self.build(body);
+
+          deferred.resolve(self);
+        });
+
+        return deferred.promise;
       },
 
       delete: function() {

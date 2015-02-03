@@ -20,11 +20,11 @@ CragProject.factory('LocationModel', ['SocketService', '$q',
         var deferred = $q.defer();
 
         SocketService.get('/api/location/findBySlug/' + slug, function(body, res) {
-          if (res.statusCode !== 200) deferred.reject(body);
+          if (res.statusCode !== 200) return deferred.reject(body);
 
           self.build(body);
 
-          deferred.resolve(self);
+          return deferred.resolve(self);
         });
 
         return deferred.promise;

@@ -13,7 +13,7 @@ module.exports = {
     .find()
     .populate('location')
     .exec(function(err, foundClimbs) {
-      if (err || !foundClimbs) return res.send(400, { error: err });
+      if (err || !foundClimbs || foundClimbs.length === 0) return res.send(400, { error: err });
 
       return res.send(foundClimbs);
     });
@@ -58,7 +58,7 @@ module.exports = {
     .where({ slug: params.slug })
     .populate('location')
     .exec(function(err, foundClimb) {
-      if (err || !foundClimb) return res.send(400, { error: err });
+      if (err || !foundClimb || foundClimb.length === 0) return res.send(400, { error: err });
 
       foundClimb = foundClimb[0];
 

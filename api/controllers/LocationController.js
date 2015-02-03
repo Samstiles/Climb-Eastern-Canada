@@ -14,7 +14,7 @@ module.exports = {
     .populate('sublocations')
     .populate('climbs')
     .exec(function(err, foundLocations) {
-      if (err || !foundLocations) return res.send(400, { error: err });
+      if (err || !foundLocations || foundLocations.length === 0) return res.send(400, { error: err });
 
       return res.send(foundLocations);
     });

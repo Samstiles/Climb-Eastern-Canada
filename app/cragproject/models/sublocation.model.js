@@ -1,14 +1,14 @@
-CragProject.factory('Wall', ['',
-  function() {
+CragProject.factory('SublocationModel', ['SocketService', '$q',
+  function(SocketService, $q) {
 
-    function Wall (wallData) {
-      if (wallData) this.build(wallData);
+    function Sublocation (sublocationData) {
+      if (sublocationData) this.build(sublocationData);
     }
 
-    Wall.prototype = {
+    Sublocation.prototype = {
 
-      build: function(wallData) {
-        angular.extend(this, wallData);
+      build: function(sublocationData) {
+        angular.extend(this, sublocationData);
       },
 
       loadFromId: function(id) {
@@ -17,6 +17,17 @@ CragProject.factory('Wall', ['',
 
       loadFromSlug: function(slug) {
         var self = this;
+        var deferred = $q.defer();
+
+        SocketService.get('/api/sublocation/findBySlug/' + slug, function(body, res) {
+          if (res.statusCode !== 200) return deferred.reject(body);
+
+          self.build(body);
+
+          return deferred.resolve(self);
+        });
+
+        return deferred.promise;
       },
 
       delete: function() {
@@ -33,6 +44,6 @@ CragProject.factory('Wall', ['',
 
     };
 
-    return Wall;
+    return Sublocation;
   }
 ]);
