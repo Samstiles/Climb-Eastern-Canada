@@ -1,6 +1,29 @@
 module.exports.routes = {
 
   /**
+   * GET (read) ALL routes
+   */
+  'GET /api/climb/findAll': {
+    controller: 'ClimbController',
+    action: 'findAll'
+  },
+
+  'GET /api/location/findAll': {
+    controller: 'LocationController',
+    action: 'findAll'
+  },
+
+  'GET /api/sublocation/findAll': {
+    controller: 'SublocationController',
+    action: 'findAll'
+  },
+
+  'GET /api/user/findAll': {
+    controller: 'UserController',
+    action: 'findAll'
+  },
+
+  /**
    * GET (read) routes by Slug
    */
   'GET /api/climb/findBySlug/:slug': {
