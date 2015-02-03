@@ -6,7 +6,7 @@ module.exports = {
     .populate('location')
     .exec(function(err, foundSublocation) {
       if (err || !foundSublocation) return res.send(400, { error: err });
-      foundSublocation = foundSublocation[0];
+
       return res.send(foundSublocation);
     });
   },

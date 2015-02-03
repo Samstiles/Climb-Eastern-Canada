@@ -1,12 +1,13 @@
 module.exports = {
   findById: function(req, res) {
     var params = req.params.all();
+    console.log('Params', params);
 
     Climb.findOne(params.id)
     .populate('location')
     .exec(function(err, foundClimb) {
       if (err || !foundClimb) return res.send(400, { error: err });
-      foundClimb = foundClimb[0];
+
       return res.send(foundClimb);
     });
   },
