@@ -1,6 +1,5 @@
-CragProject.controller('HomeController',
-  ['$scope',
-  function($scope) {
-
+CragProject.controller('HomeController', ['',
+  function() {
+    var ctrl = this;
   }
 ]);
