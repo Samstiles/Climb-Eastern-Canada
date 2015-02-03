@@ -19,21 +19,14 @@ module.exports = {
       required: true
     },
 
-    // crag: {
-    //   model: 'Crag',
-    //   required: true
-    // },
-
-    // routes: {
-    //   collection: 'Route',
-    //   via: 'wall'
-    // }
+    location: {
+      model: 'Location',
+      required: true
+    }
 
   },
 
   beforeValidate: function(values, cb) {
-    "use strict";
-
     if (!values.name) return cb();
 
     values.slug = SlugService.sluggifyString(values.name);

@@ -44,10 +44,9 @@ module.exports = {
       required: true
     },
 
-    // walls: {
-    //   collection: 'Wall',
-    //   via: 'crag'
-    // },
+    Sublocations: {
+      collection: 'Sublocation',
+    },
 
     parking_location_latitude: {
       type: 'string'
@@ -60,10 +59,7 @@ module.exports = {
   },
 
   beforeValidate: function(values, cb) {
-    "use strict";
-
-    if ( !values.name )
-      return cb();
+    if (!values.name) return cb();
 
     values.slug = SlugService.sluggifyString(values.name);
     return cb();

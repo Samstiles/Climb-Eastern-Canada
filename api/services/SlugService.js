@@ -7,8 +7,3 @@ module.exports.sluggifyString = function(name) {
   var id = shortid.generate();
   return name.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') + '-' + id;
 };
-
-module.exports.correctSlug = function(name, slug) {
-  var slugName = name.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
-  return slug.match('^' + slugName + '-[a-zA-Z0-9$@]*$');
-};
