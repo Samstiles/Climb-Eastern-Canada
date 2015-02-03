@@ -1,10 +1,12 @@
 module.exports = {
 
   /**
-   * [findAll description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [findAll] <====
+   * Finds all climbs in the database
+   * @endpoint        = '/api/climb/findAll'
+   * @endpoint_method = 'GET'
+   * @params          = NO PARAMETERS REQUIRED
+   * @returns         = A list of every climb in the database
    */
   findAll: function(req, res) {
     Climb
@@ -18,10 +20,13 @@ module.exports = {
   },
 
   /**
-   * [findById description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [findById] <====
+   * Finds one climb in the database by id
+   * @endpoint        = '/api/climb/findById/{id}'
+   * @endpoint_method = 'GET'
+   * @params          = A climb MongoId
+   * @params_example  = { id: "54d0270ab4581c07c14af9fb" }
+   * @returns         = The climb that matched the MongoId passed in
    */
   findById: function(req, res) {
     var params = req.params.all();
@@ -37,10 +42,13 @@ module.exports = {
   },
 
   /**
-   * [findBySlug description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [findBySlug] <====
+   * @description     = Finds one climb in the database by slug
+   * @endpoint        = '/api/climb/findBySlug/{slug}'
+   * @endpoint_method = 'GET'
+   * @params          = A climb slug string
+   * @params_example  = { slug: "sleigh-ride-AwxRSwU3" }
+   * @returns         = The climb that matched the slug passed in
    */
   findBySlug: function(req, res) {
     var params = req.params.all();
@@ -59,10 +67,16 @@ module.exports = {
   },
 
   /**
-   * [create description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [create] <====
+   * @description     = Creates a climb with the data passed from
+   *                    the form on the client.
+   * @endpoint        = '/api/climb'
+   * @endpoint_method = 'POST'
+   * @params          = A JSON hash of the climb data
+   * @params_example  = { name: "Sleigh Ride",
+   *                      description: "Test",
+   *                      grade: "V7" }
+   * @returns         = The climb that was created
    */
   create: function(req, res) {
     var params = req.params.all();
@@ -89,10 +103,17 @@ module.exports = {
   },
 
   /**
-   * [update description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [update] <====
+   * @description     = Updates the climb that matches the MongoID
+   *                    passed in with the new values
+   * @endpoint        = '/api/climb'
+   * @endpoint_method = 'PUT'
+   * @params          = A climb MongoId string and any values to
+   *                    be updated in a JSON hash
+   * @params_example  = { id: "54d02297ede0f879b76e2457",
+   *                      name: "This is a new name",
+   *                      description: "This is a new description" }
+   * @returns         = The climb that was updated
    */
   update: function(req, res) {
     var params = req.params.all();

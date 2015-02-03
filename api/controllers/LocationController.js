@@ -1,10 +1,12 @@
 module.exports = {
 
   /**
-   * [findAll description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [findAll] <====
+   * Finds all locations in the database
+   * @endpoint        = '/api/location/findAll'
+   * @endpoint_method = 'GET'
+   * @params          = NO PARAMETERS REQUIRED
+   * @returns         = A list of every location in the database
    */
   findAll: function(req, res) {
     Location
@@ -19,10 +21,13 @@ module.exports = {
   },
 
   /**
-   * [findById description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [findById] <====
+   * Finds one location in the database by id
+   * @endpoint        = '/api/location/findById/{id}'
+   * @endpoint_method = 'GET'
+   * @params          = A location MongoId
+   * @params_example  = { id: "54d0270ab4581c07c14af9fb" }
+   * @returns         = The location that matched the MongoId passed in
    */
   findById: function(req, res) {
     var params = req.params.all();
@@ -39,10 +44,13 @@ module.exports = {
   },
 
   /**
-   * [findBySlug description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [findBySlug] <====
+   * @description     = Finds one location in the database by slug
+   * @endpoint        = '/api/location/findBySlug/{slug}'
+   * @endpoint_method = 'GET'
+   * @params          = A location slug string
+   * @params_example  = { slug: "unb-woodlot-AwxRSwU3" }
+   * @returns         = The location that matched the slug passed in
    */
   findBySlug: function(req, res) {
     var params = req.params.all();
@@ -59,10 +67,15 @@ module.exports = {
   },
 
   /**
-   * [create description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [create] <====
+   * @description     = Creates a location with the data passed from
+   *                    the form on the client.
+   * @endpoint        = '/api/location'
+   * @endpoint_method = 'POST'
+   * @params          = A JSON hash of the location data
+   * @params_example  = { name: "UNB Woodlot",
+   *                      description: "Test" }
+   * @returns         = The location that was created
    */
   create: function(req, res) {
     var params = req.params.all();
@@ -77,10 +90,17 @@ module.exports = {
   },
 
   /**
-   * [update description]
-   * @param  {[type]} req [description]
-   * @param  {[type]} res [description]
-   * @return {[type]}     [description]
+   * ====> [update] <====
+   * @description     = Updates the location that matches the MongoID
+   *                    passed in with the new values
+   * @endpoint        = '/api/location'
+   * @endpoint_method = 'PUT'
+   * @params          = A location MongoId string and any values to
+   *                    be updated in a JSON hash
+   * @params_example  = { id: "54d02297ede0f879b76e2457",
+   *                      name: "This is a new name",
+   *                      description: "This is a new description" }
+   * @returns         = The location that was updated
    */
   update: function(req, res) {
     var params = req.params.all();
