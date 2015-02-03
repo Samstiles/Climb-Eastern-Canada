@@ -26,22 +26,22 @@ module.exports.routes = {
   /**
    * GET (read) routes by Id
    */
-  'GET /api/climb/findById/:slug': {
+  'GET /api/climb/findById/:id': {
     controller: 'ClimbController',
     action: 'findById'
   },
 
-  'GET /api/location/findById/:slug': {
+  'GET /api/location/findById/:id': {
     controller: 'LocationController',
     action: 'findById'
   },
 
-  'GET /api/sublocation/findById/:slug': {
+  'GET /api/sublocation/findById/:id': {
     controller: 'SublocationController',
     action: 'findById'
   },
 
-  'GET /api/user/findById/:slug': {
+  'GET /api/user/findById/:id': {
     controller: 'UserController',
     action: 'findById'
   },
