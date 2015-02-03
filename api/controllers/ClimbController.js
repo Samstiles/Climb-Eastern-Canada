@@ -134,6 +134,26 @@ module.exports = {
         return res.send(foundClimb);
       });
     });
+  },
+
+  /**
+   * ====> [destroy] <====
+   * @description     = Destroys the climb that matches the MongoID
+   *                    passed in
+   * @endpoint        = '/api/climb/{id}'
+   * @endpoint_method = 'DELETE'
+   * @params          = A climb MongoId string
+   * @params_example  = { id: "54d02297ede0f879b76e2457" }
+   * @returns         = A success message if successful
+   */
+  destroy: function(req, res) {
+    var params = req.params.all();
+
+    Climb.destroy({ id: params.id }).exec(function(err, destroyedClimb) {
+      if (err || !destroyedClimb) return res.send(400, { error: err });
+
+      return res.send(200, "Successfully destroyed climb of id " + params.id + "!");
+    });
   }
 
 };

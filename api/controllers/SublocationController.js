@@ -135,6 +135,26 @@ module.exports = {
         return res.send(foundSublocation);
       });
     });
+  },
+
+  /**
+   * ====> [destroy] <====
+   * @description     = Destroys the sublocation that matches the MongoID
+   *                    passed in
+   * @endpoint        = '/api/sublocation/{id}'
+   * @endpoint_method = 'DELETE'
+   * @params          = A sublocation MongoId string
+   * @params_example  = { id: "54d02297ede0f879b76e2457" }
+   * @returns         = A success message if successful
+   */
+  destroy: function(req, res) {
+    var params = req.params.all();
+
+    Sublocation.destroy({ id: params.id }).exec(function(err, destroyedSublocation) {
+      if (err || !destroyedSublocation) return res.send(400, { error: err });
+
+      return res.send(200, "Successfully destroyed sublocation of id " + params.id + "!");
+    });
   }
 
 };

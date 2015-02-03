@@ -122,6 +122,26 @@ module.exports = {
         return res.send(foundLocation);
       });
     });
+  },
+
+  /**
+   * ====> [destroy] <====
+   * @description     = Destroys the location that matches the MongoID
+   *                    passed in
+   * @endpoint        = '/api/location/{id}'
+   * @endpoint_method = 'DELETE'
+   * @params          = A location MongoId string
+   * @params_example  = { id: "54d02297ede0f879b76e2457" }
+   * @returns         = A success message if successful
+   */
+  destroy: function(req, res) {
+    var params = req.params.all();
+
+    Location.destroy({ id: params.id }).exec(function(err, destroyedLocation) {
+      if (err || !destroyedLocation) return res.send(400, { error: err });
+
+      return res.send(200, "Successfully destroyed location of id " + params.id + "!");
+    });
   }
 
 };

@@ -113,6 +113,29 @@ module.exports.routes = {
   'PUT /api/user': {
     controller: 'UserController',
     action: 'update'
+  },
+
+    /**
+   * DELETE (delete) routes
+   */
+  'DELETE /api/climb/:id': {
+    controller: 'ClimbController',
+    action: 'destroy'
+  },
+
+  'DELETE /api/location/:id': {
+    controller: 'LocationController',
+    action: 'destroy'
+  },
+
+  'DELETE /api/sublocation/:id': {
+    controller: 'SublocationController',
+    action: 'destroy'
+  },
+
+  'DELETE /api/user/:id': {
+    controller: 'UserController',
+    action: 'destroy'
   }
 
 };
