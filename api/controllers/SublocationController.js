@@ -4,7 +4,7 @@ module.exports = {
    * ====> [findAll] <====
    * Finds all sublocations in the database
    * @endpoint        = '/api/sublocation/findAll'
-   * @endpoint_method = 'GET'
+   * @http_method     = 'GET'
    * @params          = NO PARAMETERS REQUIRED
    * @returns         = A list of every sublocation in the database
    */
@@ -23,7 +23,7 @@ module.exports = {
    * ====> [findById] <====
    * Finds one sublocation in the database by id
    * @endpoint        = '/api/sublocation/findById/{id}'
-   * @endpoint_method = 'GET'
+   * @http_method     = 'GET'
    * @params          = A sublocation MongoId
    * @params_example  = { id: "54d0270ab4581c07c14af9fb" }
    * @returns         = The sublocation that matched the MongoId passed in
@@ -45,7 +45,7 @@ module.exports = {
    * ====> [findBySlug] <====
    * @description     = Finds one sublocation in the database by slug
    * @endpoint        = '/api/sublocation/findBySlug/{slug}'
-   * @endpoint_method = 'GET'
+   * @http_method     = 'GET'
    * @params          = A sublocation slug string
    * @params_example  = { slug: "unb-woodlot-AwxRSwU3" }
    * @returns         = The sublocation that matched the slug passed in
@@ -70,7 +70,7 @@ module.exports = {
    *                    the form on the client, and associates the
    *                    sublocation to the location passed as well.
    * @endpoint        = '/api/sublocation'
-   * @endpoint_method = 'POST'
+   * @http_method     = 'POST'
    * @params          = A JSON hash of the sublocation data
    * @params_example  = { name: "UNB Woodlot",
    *                      description: "Test",
@@ -107,7 +107,7 @@ module.exports = {
    * @description     = Updates the sublocation that matches the MongoID
    *                    passed in with the new values
    * @endpoint        = '/api/sublocation'
-   * @endpoint_method = 'PUT'
+   * @http_method     = 'PUT'
    * @params          = A sublocation MongoId string and any values to
    *                    be updated in a JSON hash
    * @params_example  = { id: "54d02297ede0f879b76e2457",
@@ -142,7 +142,7 @@ module.exports = {
    * @description     = Destroys the sublocation that matches the MongoID
    *                    passed in
    * @endpoint        = '/api/sublocation/{id}'
-   * @endpoint_method = 'DELETE'
+   * @http_method     = 'DELETE'
    * @params          = A sublocation MongoId string
    * @params_example  = { id: "54d02297ede0f879b76e2457" }
    * @returns         = A success message if successful

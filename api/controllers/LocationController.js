@@ -4,7 +4,7 @@ module.exports = {
    * ====> [findAll] <====
    * Finds all locations in the database
    * @endpoint        = '/api/location/findAll'
-   * @endpoint_method = 'GET'
+   * @http_method     = 'GET'
    * @params          = NO PARAMETERS REQUIRED
    * @returns         = A list of every location in the database
    */
@@ -24,7 +24,7 @@ module.exports = {
    * ====> [findById] <====
    * Finds one location in the database by id
    * @endpoint        = '/api/location/findById/{id}'
-   * @endpoint_method = 'GET'
+   * @http_method     = 'GET'
    * @params          = A location MongoId
    * @params_example  = { id: "54d0270ab4581c07c14af9fb" }
    * @returns         = The location that matched the MongoId passed in
@@ -47,7 +47,7 @@ module.exports = {
    * ====> [findBySlug] <====
    * @description     = Finds one location in the database by slug
    * @endpoint        = '/api/location/findBySlug/{slug}'
-   * @endpoint_method = 'GET'
+   * @http_method     = 'GET'
    * @params          = A location slug string
    * @params_example  = { slug: "unb-woodlot-AwxRSwU3" }
    * @returns         = The location that matched the slug passed in
@@ -71,7 +71,7 @@ module.exports = {
    * @description     = Creates a location with the data passed from
    *                    the form on the client.
    * @endpoint        = '/api/location'
-   * @endpoint_method = 'POST'
+   * @http_method     = 'POST'
    * @params          = A JSON hash of the location data
    * @params_example  = { name: "UNB Woodlot",
    *                      description: "Test" }
@@ -94,7 +94,7 @@ module.exports = {
    * @description     = Updates the location that matches the MongoID
    *                    passed in with the new values
    * @endpoint        = '/api/location'
-   * @endpoint_method = 'PUT'
+   * @http_method     = 'PUT'
    * @params          = A location MongoId string and any values to
    *                    be updated in a JSON hash
    * @params_example  = { id: "54d02297ede0f879b76e2457",
@@ -129,7 +129,7 @@ module.exports = {
    * @description     = Destroys the location that matches the MongoID
    *                    passed in
    * @endpoint        = '/api/location/{id}'
-   * @endpoint_method = 'DELETE'
+   * @http_method     = 'DELETE'
    * @params          = A location MongoId string
    * @params_example  = { id: "54d02297ede0f879b76e2457" }
    * @returns         = A success message if successful

@@ -4,7 +4,7 @@ module.exports = {
    * ====> [findAll] <====
    * Finds all climbs in the database
    * @endpoint        = '/api/climb/findAll'
-   * @endpoint_method = 'GET'
+   * @http_method     = 'GET'
    * @params          = NO PARAMETERS REQUIRED
    * @returns         = A list of every climb in the database
    */
@@ -23,7 +23,7 @@ module.exports = {
    * ====> [findById] <====
    * Finds one climb in the database by id
    * @endpoint        = '/api/climb/findById/{id}'
-   * @endpoint_method = 'GET'
+   * @http_method     = 'GET'
    * @params          = A climb MongoId
    * @params_example  = { id: "54d0270ab4581c07c14af9fb" }
    * @returns         = The climb that matched the MongoId passed in
@@ -45,7 +45,7 @@ module.exports = {
    * ====> [findBySlug] <====
    * @description     = Finds one climb in the database by slug
    * @endpoint        = '/api/climb/findBySlug/{slug}'
-   * @endpoint_method = 'GET'
+   * @http_method     = 'GET'
    * @params          = A climb slug string
    * @params_example  = { slug: "sleigh-ride-AwxRSwU3" }
    * @returns         = The climb that matched the slug passed in
@@ -71,7 +71,7 @@ module.exports = {
    * @description     = Creates a climb with the data passed from
    *                    the form on the client.
    * @endpoint        = '/api/climb'
-   * @endpoint_method = 'POST'
+   * @http_method     = 'POST'
    * @params          = A JSON hash of the climb data
    * @params_example  = { name: "Sleigh Ride",
    *                      description: "Test",
@@ -107,7 +107,7 @@ module.exports = {
    * @description     = Updates the climb that matches the MongoID
    *                    passed in with the new values
    * @endpoint        = '/api/climb'
-   * @endpoint_method = 'PUT'
+   * @http_method     = 'PUT'
    * @params          = A climb MongoId string and any values to
    *                    be updated in a JSON hash
    * @params_example  = { id: "54d02297ede0f879b76e2457",
@@ -141,7 +141,7 @@ module.exports = {
    * @description     = Destroys the climb that matches the MongoID
    *                    passed in
    * @endpoint        = '/api/climb/{id}'
-   * @endpoint_method = 'DELETE'
+   * @http_method     = 'DELETE'
    * @params          = A climb MongoId string
    * @params_example  = { id: "54d02297ede0f879b76e2457" }
    * @returns         = A success message if successful
