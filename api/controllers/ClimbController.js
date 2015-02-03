@@ -1,6 +1,27 @@
 module.exports = {
-  findById: function(req, res) { return res.send(200); },
-  findBySlug: function(req, res) { return res.send(200); },
+  findById: function(req, res) {
+    var params = req.params.all();
+
+    Climb.findOne(params.id)
+    .populate('location')
+    .exec(function(err, foundClimb) {
+      if (err || !foundClimb) return res.send(400, { error: err });
+      foundClimb = foundClimb[0];
+      return res.send(foundClimb);
+    });
+  },
+  findBySlug: function(req, res) {
+    var params = req.params.all();
+
+    Climb.find()
+    .where({ slug: params.slug })
+    .populate('location')
+    .exec(function(err, foundClimb) {
+      if (err || !foundClimb) return res.send(400, { error: err });
+      foundClimb = foundClimb[0];
+      return res.send(foundClimb);
+    });
+  },
   create: function(req, res) {
     var params = req.params.all();
 
