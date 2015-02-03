@@ -6,8 +6,7 @@ jQuery(document).ready(function($) {
 
 var CragProject = angular.module('CragProject', ['ui.router', 'ngMaterial']);
 
-CragProject.run(
-  ['$rootScope', '$mdSidenav',
+CragProject.run(['$rootScope', '$mdSidenav',
   function($rootScope, $mdSidenav) {
 
     $rootScope.openSideNav = function() {
@@ -18,11 +17,14 @@ CragProject.run(
       $mdSidenav('left').close();
     };
 
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+      console.error('Error transitioning to state \'' + toState + '\'...', error);
+    });
+
   }
 ]);
 
-CragProject.config(
-  ['$urlRouterProvider',
+CragProject.config(['$urlRouterProvider',
   function($urlRouterProvider) {
     $urlRouterProvider.otherwise('/home');
   }

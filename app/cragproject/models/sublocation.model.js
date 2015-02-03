@@ -1,5 +1,4 @@
-CragProject.factory('Wall',
-  ['',
+CragProject.factory('Wall', ['',
   function() {
 
     function Wall (wallData) {
@@ -13,6 +12,10 @@ CragProject.factory('Wall',
       },
 
       loadFromId: function(id) {
+        var self = this;
+      },
+
+      loadFromSlug: function(slug) {
         var self = this;
       },
 

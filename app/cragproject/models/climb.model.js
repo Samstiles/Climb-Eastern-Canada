@@ -1,5 +1,4 @@
-CragProject.factory('Climb',
-  ['',
+CragProject.factory('Climb', ['',
   function() {
 
     function Climb (climbData) {
@@ -13,6 +12,10 @@ CragProject.factory('Climb',
       },
 
       loadFromId: function(id) {
+        var self = this;
+      },
+
+      loadFromSlug: function(slug) {
         var self = this;
       },
 

@@ -1,6 +1,5 @@
-CragProject.factory('LocationModel', 
-  ['$scope',
-  function($scope) {
+CragProject.factory('LocationModel', ['SocketService', '$q',
+  function(SocketService, $q) {
 
     function LocationModel (locationModelData) {
       if (locationModelData) this.build(locationModelData);
@@ -14,6 +13,21 @@ CragProject.factory('LocationModel',
 
       loadFromId: function(id) {
         var self = this;
+      },
+
+      loadFromSlug: function(slug) {
+        var self = this;
+        var deferred = $q.defer();
+
+        SocketService.get('/api/location/findBySlug/' + slug, function(body, res) {
+          if (res.statusCode !== 200) deferred.reject(body);
+
+          self.build(body);
+
+          deferred.resolve(self);
+        });
+
+        return deferred.promise;
       },
 
       delete: function() {

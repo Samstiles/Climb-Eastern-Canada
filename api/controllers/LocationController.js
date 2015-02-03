@@ -60,7 +60,7 @@ module.exports = {
     .populate('sublocations')
     .populate('climbs')
     .exec(function(err, foundLocation) {
-      if (err || !foundLocation) return res.send(400, { error: err });
+      if (err || !foundLocation || foundLocation.length === 0) return res.send(400, { error: err });
       foundLocation = foundLocation[0];
       return res.send(foundLocation);
     });
