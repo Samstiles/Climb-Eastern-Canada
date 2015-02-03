@@ -88,7 +88,13 @@ module.exports = {
 
     values.slug = SlugService.sluggifyString(values.name);
     return cb();
+  },
+
+  getRequiredFields: function() {
+    var self = this;
+    return _.keys(_.pick(self._attributes, function(value, key, object) {
+      return "required" in object[key];
+    }));
   }
 
 };
-
