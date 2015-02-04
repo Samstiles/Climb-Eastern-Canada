@@ -2,7 +2,7 @@ CragProject.config(['$stateProvider',
   function($stateProvider) {
 
     $stateProvider.state('view_location.view_sublocation', {
-      url: '/sublocation/:slug',
+      url: '/sublocation/:slug/',
       templateUrl: '/cragproject/states/view_sublocation.template.html',
       controllerAs: 'ViewSublocationCtrl',
       resolve: {
