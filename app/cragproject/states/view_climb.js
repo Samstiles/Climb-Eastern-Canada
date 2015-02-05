@@ -1,8 +1,8 @@
 CragProject.config(['$stateProvider',
   function($stateProvider) {
 
-    $stateProvider.state('view_location.view_climb', {
-      url: '/climb/:slug',
+    $stateProvider.state('view_climb', {
+      url: '/climb/{slug}',
       templateUrl: '/cragproject/states/view_climb.template.html',
       controllerAs: 'ViewClimbCtrl',
       resolve: {

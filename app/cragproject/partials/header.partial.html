@@ -1,7 +1,7 @@
 <header>
-  <md-toolbar md-scroll-shrink ng-click="$root.openSideNav()" class="md-warn">
+  <md-toolbar md-scroll-shrink class="md-warn">
     <div class="md-toolbar-tools">
-      <h3>
+      <h3 ng-click="$root.openSideNav()">
         <i class="fa fa-bars menu-hamburger"></i>
         <span>Rock Climb Canada</span>
       </h3>
@@ -10,8 +10,9 @@
       </div>
       <nav>
         <ul>
+          <li><a href="/#/home" title="Home"><i class="fa fa-home"> Home</i></a></li>
           <li><a href="/#/database" title="Database"><i class="fa fa-database"></i> Database</a></li>
-          <li><a href="/forum" title="Forum"><i class="fa fa-comment"></i> Forum</a></li>
+          <li><a href="/#/forum" title="Forum"><i class="fa fa-comment"></i> Forum</a></li>
         </ul>
       </nav>
     </div>

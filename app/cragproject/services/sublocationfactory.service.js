@@ -1,6 +1,6 @@
 CragProject.service('SublocationFactory',
-  ['StorageService', '$q',
-  function(StorageService, $q) {
+  ['StorageService', '$q', 'SocketService', 'SublocationModel',
+  function(StorageService, $q, SocketService, SublocationModel) {
 
     this.findAllSublocations = function() {
       var self = this;

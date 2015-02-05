@@ -1,6 +1,6 @@
 CragProject.service('ClimbFactory',
-  ['StorageService', '$q',
-  function(StorageService, $q) {
+  ['StorageService', '$q', 'SocketService', 'ClimbModel',
+  function(StorageService, $q, SocketService, ClimbModel) {
 
     this.findAllClimbs = function() {
       var self = this;

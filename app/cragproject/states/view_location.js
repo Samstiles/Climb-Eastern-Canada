@@ -2,7 +2,7 @@ CragProject.config(['$stateProvider',
   function($stateProvider) {
 
     $stateProvider.state('view_location', {
-      url: '/location/:slug/',
+      url: '/location/{slug}',
       templateUrl: '/cragproject/states/view_location.template.html',
       controllerAs: 'ViewLocationCtrl',
       resolve: {

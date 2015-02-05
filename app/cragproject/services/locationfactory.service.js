@@ -1,6 +1,6 @@
 CragProject.service('LocationFactory',
-  ['StorageService', '$q',
-  function(StorageService, $q) {
+  ['StorageService', '$q', 'SocketService', 'LocationModel',
+  function(StorageService, $q, SocketService, LocationModel) {
 
     this.findAllLocations = function() {
       var self = this;
