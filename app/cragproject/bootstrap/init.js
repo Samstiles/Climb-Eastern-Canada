@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
   });
 });
 
-var CragProject = angular.module('CragProject', ['ui.router', 'ngMaterial']);
+var CragProject = angular.module('CragProject', ['ui.router', 'ngMaterial', 'react']);
 
 CragProject.run(['$rootScope', '$mdSidenav',
   function($rootScope, $mdSidenav) {
