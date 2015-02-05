@@ -13,3 +13,5 @@ var RandomRoutesList = React.createClass({
   }
 
 });
+
+CragProject.value('RandomRoutesList', RandomRoutesList);

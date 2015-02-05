@@ -29,6 +29,21 @@ module.exports = function(grunt) {
 			}
 		},
 
+		devJsx: {
+			options: {
+				startTag: '<!--JSX SCRIPTS-->',
+				endTag: '<!--JSX SCRIPTS END-->',
+				fileTmpl: '<script type="text/jsx" src="%s"></script>',
+				appRoot: '.tmp/public'
+			},
+			files: {
+				'.tmp/public/**/*.html': require('../pipeline').jsxFilesToInject,
+				'views/**/*.html': require('../pipeline').jsxFilesToInject,
+				'views/**/*.ejs': require('../pipeline').jsxFilesToInject,
+				'**/*.html': require('../pipeline').jsxFilesToInject
+			}
+		},
+
 		devJsRelative: {
 			options: {
 				startTag: '<!--SCRIPTS-->',
