@@ -144,6 +144,14 @@ module.exports.routes = {
   'DELETE /api/user/:id': {
     controller: 'UserController',
     action: 'destroy'
+  },
+
+  /**
+   * Administrative Routes
+   */
+  'POST /api/admin/createBulkSublocations': {
+    controller: 'AdminController',
+    action: 'createBulkSublocations'
   }
 
 };
