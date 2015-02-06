@@ -70,7 +70,7 @@ module.exports = {
   },
 
   /**
-   * ====> [find5Random] <====
+   * ====> [findRandom] <====
    * @description     = Finds five random climbs in the database
    * @endpoint        = '/api/climb/findRandom/{count}'
    * @http_method     = 'GET'
@@ -92,13 +92,36 @@ module.exports = {
       var results = [];
 
       for (var selected, i = 0; i < params.count; i++) {
-        if (fountClimbs.length === 0) break;
+        if (foundClimbs.length === 0) break;
         selected = foundClimbs[Math.floor(Math.random() * foundClimbs.length)];
         foundClimbs = _.without(foundClimbs, selected);
         results.push(selected);
       }
 
       return res.send(results);
+    });
+  },
+
+  /**
+   * ====> [findMostViewed] <====
+   * @description     = Finds the 5 most viewed climbs in the database
+   * @endpoint        = '/api/climb/findMostViewed
+   * @http_method     = 'GET'
+   * @params          = NO PARAMETERS REQUIRED
+   * @returns         = The 5 climb objects with the most views with associations populated
+   */
+  findMostViewed: function(req, res) {
+    Climb
+    .find()
+    .populate('location')
+    .populate('sublocation')
+    .exec(function(err, foundClimbs) {
+      if (err || !foundClimbs) return res.send(400, { error: err });
+      if (foundClimbs.length === 0) return res.send(foundClimbs);
+
+      foundClimbs = _.first(_.sortBy(foundClimbs, 'views'), 5).reverse();
+
+      return res.send(foundClimbs);
     });
   },
 

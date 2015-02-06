@@ -65,6 +65,29 @@ module.exports = {
   },
 
   /**
+   * ====> [findMostViewed] <====
+   * @description     = Finds the 5 most viewed sublocations in the database
+   * @endpoint        = '/api/sublocation/findMostViewed
+   * @http_method     = 'GET'
+   * @params          = NO PARAMETERS REQUIRED
+   * @returns         = The 5 sublocation objects with the most views with associations populated
+   */
+  findMostViewed: function(req, res) {
+    Sublocation
+    .find()
+    .populate('location')
+    .populate('climbs')
+    .exec(function(err, foundSublocations) {
+      if (err || !foundSublocations) return res.send(400, { error: err });
+      if (foundSublocations.length === 0) return res.send(foundSublocations);
+
+      foundSublocations = _.first(_.sortBy(foundSublocations, 'views'), 5).reverse();
+
+      return res.send(foundSublocations);
+    });
+  },
+
+  /**
    * ====> [create] <====
    * @description     = Creates a sublocation with the data passed from
    *                    the form on the client, and associates the

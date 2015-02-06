@@ -72,10 +72,25 @@ module.exports.routes = {
   /**
    * GET (read) UTILITY routes 
    */
-   'GET /api/climb/findRandom/:count': {
+  'GET /api/climb/findRandom/:count': {
     controller: 'ClimbController',
     action: 'findRandom'
    },
+
+  'GET /api/climb/findMostViewed': {
+    controller: 'ClimbController',
+    action: 'findMostViewed'
+  },
+
+  'GET /api/sublocation/findMostViewed': {
+    controller: 'SublocationController',
+    action: 'findMostViewed'
+  },
+
+  'GET /api/location/findMostViewed': {
+    controller: 'LocationController',
+    action: 'findMostViewed'
+  },
 
   /**
    * POST (create) routes

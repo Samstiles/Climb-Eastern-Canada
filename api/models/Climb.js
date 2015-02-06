@@ -7,6 +7,10 @@ module.exports = {
       required: true
     },
 
+    views: {
+      type: 'integer'
+    },
+
     slug: {
       type: 'string',
       index: true,
@@ -88,6 +92,7 @@ module.exports = {
 
   beforeValidate: function(values, cb) {
     if (!values.name) return cb();
+    // if (values.views) delete values.views;
 
     values.slug = SlugService.sluggifyString(values.name);
     return cb();
