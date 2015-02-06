@@ -12,6 +12,7 @@ module.exports = {
     Climb
     .find()
     .populate('location')
+    .populate('sublocation')
     .exec(function(err, foundClimbs) {
       if (err || !foundClimbs) return res.send(400, { error: err });
 
@@ -34,6 +35,7 @@ module.exports = {
     Climb
     .findOne(params.id)
     .populate('location')
+    .populate('sublocation')
     .exec(function(err, foundClimb) {
       if (err || !foundClimb) return res.send(400, { error: err });
 
@@ -57,6 +59,7 @@ module.exports = {
     .find()
     .where({ slug: params.slug })
     .populate('location')
+    .populate('sublocation')
     .exec(function(err, foundClimb) {
       if (err || !foundClimb || foundClimb.length === 0) return res.send(400, { error: err });
 
@@ -81,6 +84,7 @@ module.exports = {
     Climb
     .find()
     .populate('location')
+    .populate('sublocation')
     .exec(function(err, foundClimbs) {
       if (err || !foundClimbs) return res.send(400, { error: err });
       if (foundClimbs.length === 0) return res.send(foundClimbs);
@@ -150,11 +154,18 @@ module.exports = {
 
           foundLocation.save(function(err, savedLocation) {
             if (err || !savedLocation) return res.send(400, { error: err });
-            
-            return res.send(savedLocation);
+
+            Climb
+            .findOne(createdClimb.id)
+            .populate('location')
+            .populate('sublocation')
+            .exec(function(err, foundClimb) {
+              if (err || !foundClimb) return res.send(400, { error: err });
+
+              return res.send(foundClimb);
+            });
           });
         });
-
       });
     });
   },
@@ -185,6 +196,7 @@ module.exports = {
       Climb
       .findOne(updatedClimb.id)
       .populate('location')
+      .populate('sublocation')
       .exec(function(err, foundClimb) {
         if (err || !foundClimb) return res.send(400, { error: err });
 
