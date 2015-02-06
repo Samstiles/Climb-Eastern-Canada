@@ -13,7 +13,7 @@ module.exports = {
     .find()
     .populate('location')
     .exec(function(err, foundClimbs) {
-      if (err || !foundClimbs || foundClimbs.length === 0) return res.send(400, { error: err });
+      if (err || !foundClimbs) return res.send(400, { error: err });
 
       return res.send(foundClimbs);
     });

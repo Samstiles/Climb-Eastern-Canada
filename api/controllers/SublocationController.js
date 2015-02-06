@@ -13,7 +13,7 @@ module.exports = {
     .find()
     .populate('location')
     .exec(function(err, foundSublocations) {
-      if (err || !foundSublocations || foundSublocations.length === 0) return res.send(400, { error: err });
+      if (err || !foundSublocations) return res.send(400, { error: err });
 
       return res.send(foundSublocations);
     });
