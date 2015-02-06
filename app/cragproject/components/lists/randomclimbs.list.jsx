@@ -1,31 +1,35 @@
-var RandomRoutesList = React.createClass({
+var RandomClimbsList = React.createClass({
 
   getInitialState: function() {
-    return { climbs: [] };
+    var _this = this;
+    return { climbs: [], count:  5 };
   },
 
   componentDidMount: function() {
     var _this = this;
+
     $.ajax({
-      url: '/api/climb/find5Random',
+      url: '/api/climb/findRandom/' + _this.state.count,
       method: 'GET',
       dataType: 'json'
     }).success(function(data) {
-      _this.setState({ climbs: data });
+      _this.setState({ climbs: data, count: _this.state.count });
     }).fail(function(xhr, status, err) {
       console.log('Fail!', xhr);
     });
   },
 
   render: function() {
-    var climbLinks = this.state.climbs.map(function (climb) {
+    var _this = this;
+
+    var climbLinks = _this.state.climbs.map(function (climb) {
       return (
         <li key={climb.id}><ClimbLink climb={climb} /></li>
       );
     });
 
     return (
-      <div id="random_routes_list">
+      <div>
         <h3>Random Routes</h3>
         <ul>
           {climbLinks}
@@ -36,4 +40,4 @@ var RandomRoutesList = React.createClass({
 
 });
 
-CragProject.value('RandomRoutesList', RandomRoutesList);
+CragProject.value('RandomClimbsList', RandomClimbsList);

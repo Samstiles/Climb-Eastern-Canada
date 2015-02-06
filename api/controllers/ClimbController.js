@@ -69,12 +69,15 @@ module.exports = {
   /**
    * ====> [find5Random] <====
    * @description     = Finds five random climbs in the database
-   * @endpoint        = '/api/climb/find5Random'
+   * @endpoint        = '/api/climb/findRandom/{count}'
    * @http_method     = 'GET'
-   * @params          = NO PARAMETERS REQUIRED
-   * @returns         = 5 climb objects with associations populated
+   * @params          = count (#)
+   * @params_example  = { count: 5 }
+   * @returns         = A # of random climb objects with associations populated
    */
-  find5Random: function(req, res) {
+  findRandom: function(req, res) {
+    var params = req.params.all();
+
     Climb
     .find()
     .populate('location')
@@ -84,7 +87,8 @@ module.exports = {
 
       var results = [];
 
-      for (var selected, i = 0; i < 5; i++) {
+      for (var selected, i = 0; i < params.count; i++) {
+        if (fountClimbs.length === 0) break;
         selected = foundClimbs[Math.floor(Math.random() * foundClimbs.length)];
         foundClimbs = _.without(foundClimbs, selected);
         results.push(selected);
@@ -119,13 +123,38 @@ module.exports = {
       .exec(function(err, createdClimb) {
         if (err || !createdClimb) return res.send(400, { error: err });
 
-        foundLocation.climbs.add(createdClimb);
+        async.parallel([
 
-        foundLocation.save(function(err, savedLocation) {
-          if (err || !savedLocation) return res.send(400, { error: err });
-          
-          return res.send(savedLocation);
+          function(callback) {
+            if (!params.sublocation) callback();
+
+            Sublocation
+            .findOne(params.sublocation)
+            .exec(function(err, foundSublocation) {
+              if (err || !foundSublocation) return callback(err);
+              
+              foundSublocation.climbs.add(createdClimb);
+
+              foundSublocation.save(function(err, savedSublocation) {
+                if (err || !savedSublocation) return callback(err);
+                
+                return callback();
+              });
+            });
+          }
+
+        ], function(err) {
+          if (err) return res.send(400, { error: err });
+
+          foundLocation.climbs.add(createdClimb);
+
+          foundLocation.save(function(err, savedLocation) {
+            if (err || !savedLocation) return res.send(400, { error: err });
+            
+            return res.send(savedLocation);
+          });
         });
+
       });
     });
   },

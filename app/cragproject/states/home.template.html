@@ -3,34 +3,19 @@
 <div class="home-layout">
 
   <div class="full-width">
-    <div class="title-container">
-      <h2>Locations</h2>
-      <ul>
-        <li ng-repeat="location in HomeCtrl.locations"><a href="/#/location/{{location.slug}}">{{location.name}}</a></li>
-      </ul>
-    </div>
+    <react-component name="LocationList" />
   </div>
 
   <div class="full-width">
-    <div class="title-container">
-      <h2>Sublocations</h2>
-      <ul>
-        <li ng-repeat="sublocation in HomeCtrl.sublocations"><a href="/#/sublocation/{{sublocation.slug}}">{{sublocation.name}}</a></li>
-      </ul>
-    </div>
+    <react-component name="SublocationList" />
   </div>
 
   <div class="full-width">
-    <div class="title-container">
-      <h2>Climbs</h2>
-      <ul>
-        <li ng-repeat="climb in HomeCtrl.climbs"><a href="/#/climb/{{climb.slug}}">{{climb.name}}</a></li>
-      </ul>
-    </div>
+    <react-component name="ClimbList"
   </div>
 
   <div class="half-width">
-    <react-component name="RandomRoutesList" />
+    <react-component name="RandomClimbsList" />
   </div>
 
 </div>

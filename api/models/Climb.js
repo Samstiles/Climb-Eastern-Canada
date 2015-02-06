@@ -19,6 +19,10 @@ module.exports = {
       required: true
     },
 
+    sublocation: {
+      model: 'Sublocation'
+    },
+
     pictures: {
       type: 'array'
     },

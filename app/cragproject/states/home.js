@@ -21,6 +21,9 @@ CragProject.config(['$stateProvider',
         ctrl.locations = locations;
         ctrl.sublocations = sublocations;
         ctrl.climbs = climbs;
+        ctrl.ReactRandomClimbsProps = {
+          count: 12
+        };
         window.HomeController = ctrl;
       }]
     });

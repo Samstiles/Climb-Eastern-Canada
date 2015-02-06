@@ -22,6 +22,10 @@ module.exports = {
     location: {
       model: 'Location',
       required: true
+    },
+
+    climbs: {
+      collection: 'Climb'
     }
 
   },

@@ -72,9 +72,9 @@ module.exports.routes = {
   /**
    * GET (read) UTILITY routes 
    */
-   'GET /api/climb/find5Random': {
+   'GET /api/climb/findRandom/:count': {
     controller: 'ClimbController',
-    action: 'find5Random'
+    action: 'findRandom'
    },
 
   /**
