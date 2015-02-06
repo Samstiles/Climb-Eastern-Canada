@@ -1,20 +1,20 @@
 var RandomRoutesList = React.createClass({
 
   getInitialState: function() {
-    return { climbs: [
-      { id: 5,
-        name: "Ra",
-        grade: "5.12a",
-        slug: "ra-g9sf8fq4nsvr9xdbj",
-        location: { name: "Sunnyside",
-                    slug: "sunnyside-agfh8250ghsasfg93a524a"} },
-      { id: 4,
-        name: "Leviathan",
-        grade: "5.11b",
-        slug: "leviathan-g9sf8fq4nsvr9xdbj",
-        location: { name: "Cochrane Lane",
-                    slug: "cochrane-lane-agfh8250ghsasfg93a524a"} }
-    ]};
+    return { climbs: [] };
+  },
+
+  componentDidMount: function() {
+    var _this = this;
+    $.ajax({
+      url: '/api/climb/find5Random',
+      method: 'GET',
+      dataType: 'json'
+    }).success(function(data) {
+      _this.setState({ climbs: data });
+    }).fail(function(xhr, status, err) {
+      console.log('Fail!', xhr);
+    });
   },
 
   render: function() {
@@ -23,6 +23,7 @@ var RandomRoutesList = React.createClass({
         <li key={climb.id}><ClimbLink climb={climb} /></li>
       );
     });
+
     return (
       <div id="random_routes_list">
         <h3>Random Routes</h3>

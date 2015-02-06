@@ -77,6 +77,7 @@ module.exports = {
   find5Random: function(req, res) {
     Climb
     .find()
+    .populate('location')
     .exec(function(err, foundClimbs) {
       if (err || !foundClimbs || foundClimbs.length === 0) return res.send(400, { error: err });
 

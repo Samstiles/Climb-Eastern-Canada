@@ -30,7 +30,7 @@ module.exports = {
     },
 
     rock_features: {
-      type: 'string',
+      type: 'array',
       required: true
     },
 
