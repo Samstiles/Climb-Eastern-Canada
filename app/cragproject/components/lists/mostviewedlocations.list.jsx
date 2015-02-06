@@ -1,19 +1,19 @@
-var MostViewedClimbsList = React.createClass({
+var MostViewedLocationsList = React.createClass({
 
   getInitialState: function() {
     var _this = this;
-    return { climbs: [] };
+    return { locations: [] };
   },
 
   componentDidMount: function() {
     var _this = this;
 
     $.ajax({
-      url: '/api/climb/findMostViewed',
+      url: '/api/location/findMostViewed',
       method: 'GET',
       dataType: 'json'
     }).success(function(data) {
-      _this.setState({ climbs: data });
+      _this.setState({ locations: data });
     }).fail(function(xhr, status, err) {
       console.log('Fail!', xhr);
     });
@@ -22,17 +22,17 @@ var MostViewedClimbsList = React.createClass({
   render: function() {
     var _this = this;
 
-    var climbLinks = _this.state.climbs.map(function (climb) {
+    var locationLinks = _this.state.locations.map(function (location) {
       return (
-        <li key={climb.id}>{climb.views} views - <ClimbLink climb={climb} /></li>
+        <li key={location.id}>{location.views} views - <LocationLink location={location} /></li>
       );
     });
 
     return (
       <div>
-        <h3>Most Viewed Climbs</h3>
+        <h3>Most Viewed Locations</h3>
         <ul>
-          {climbLinks}
+          {locationLinks}
         </ul>
       </div>
     );
@@ -40,4 +40,4 @@ var MostViewedClimbsList = React.createClass({
 
 });
 
-CragProject.value('MostViewedClimbsList', MostViewedClimbsList);
+CragProject.value('MostViewedLocationsList', MostViewedLocationsList);
