@@ -79,11 +79,12 @@ module.exports = {
     .find()
     .populate('location')
     .exec(function(err, foundClimbs) {
-      if (err || !foundClimbs || foundClimbs.length === 0) return res.send(400, { error: err });
+      if (err || !foundClimbs) return res.send(400, { error: err });
+      if (foundClimbs.length === 0) return res.send(foundClimbs);
 
       var results = [];
 
-      for(var selected, i = 0; i < 5; i++) {
+      for (var selected, i = 0; i < 5; i++) {
         selected = foundClimbs[Math.floor(Math.random() * foundClimbs.length)];
         foundClimbs = _.without(foundClimbs, selected);
         results.push(selected);
