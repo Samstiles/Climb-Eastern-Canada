@@ -84,14 +84,11 @@ module.exports = {
 
       for(var selected, i = 0; i < 5; i++) {
         selected = foundClimbs[Math.floor(Math.random() * foundClimbs.length)];
-        console.log('Found climbs length:', foundClimbs.length);
         foundClimbs = _.without(foundClimbs, selected);
-        console.log('Found climbs length after:', foundClimbs.length);
         results.push(selected);
       }
 
-      console.log('Results:', results);
-      return results;
+      return res.send(results);
     });
   },
 
