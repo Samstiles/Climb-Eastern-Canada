@@ -67,6 +67,35 @@ module.exports = {
   },
 
   /**
+   * ====> [find5Random] <====
+   * @description     = Finds five random climbs in the database
+   * @endpoint        = '/api/climb/find5Random'
+   * @http_method     = 'GET'
+   * @params          = NO PARAMETERS REQUIRED
+   * @returns         = 5 climb objects with associations populated
+   */
+  find5Random: function(req, res) {
+    Climb
+    .find()
+    .exec(function(err, foundClimbs) {
+      if (err || !foundClimbs || foundClimbs.length === 0) return res.send(400, { error: err });
+
+      var results = [];
+
+      for(var selected, i = 0; i < 5; i++) {
+        selected = foundClimbs[Math.floor(Math.random() * foundClimbs.length)];
+        console.log('Found climbs length:', foundClimbs.length);
+        foundClimbs = _.without(foundClimbs, selected);
+        console.log('Found climbs length after:', foundClimbs.length);
+        results.push(selected);
+      }
+
+      console.log('Results:', results);
+      return results;
+    });
+  },
+
+  /**
    * ====> [create] <====
    * @description     = Creates a climb with the data passed from
    *                    the form on the client.

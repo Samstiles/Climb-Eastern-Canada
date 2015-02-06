@@ -70,6 +70,14 @@ module.exports.routes = {
   },
 
   /**
+   * GET (read) UTILITY routes 
+   */
+   'GET /api/climb/find5Random': {
+    controller: 'ClimbController',
+    action: 'find5Random'
+   },
+
+  /**
    * POST (create) routes
    */
   'POST /api/climb': {
