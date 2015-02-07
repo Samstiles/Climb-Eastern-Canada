@@ -6,7 +6,7 @@ Chart.defaults.global = {
     animationSteps: 60,
 
     // String - Animation easing effect
-    animationEasing: "easeOutQuart",
+    animationEasing: "easeInSine",
 
     // Boolean - If we should show the scale at all
     showScale: true,
@@ -110,10 +110,10 @@ Chart.defaults.global = {
     tooltipXOffset: 10,
 
     // String - Template string for single tooltips
-    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
+    tooltipTemplate: "<% if (label) { %><%= label %>: <% } %><%= value %>",
 
     // String - Template string for multiple tooltips
-    multiTooltipTemplate: "<%= value %>",
+    multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
 
     // Function - Will fire on animation progression.
     onAnimationProgress: function(){},

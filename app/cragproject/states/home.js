@@ -4,7 +4,7 @@ CragProject.config(['$stateProvider',
     $stateProvider.state('home', {
       url: '/home',
       templateUrl: '/cragproject/states/home.template.html',
-      controllerAs: 'HomeCtrl',
+      // controllerAs: 'HomeCtrl',
       resolve: {
         "locations": ['LocationFactory', function(LocationFactory) {
           return LocationFactory.findAllLocations();
@@ -21,9 +21,6 @@ CragProject.config(['$stateProvider',
         ctrl.locations = locations;
         ctrl.sublocations = sublocations;
         ctrl.climbs = climbs;
-        ctrl.ReactRandomClimbsProps = {
-          count: 12
-        };
         window.HomeController = ctrl;
       }]
     });
