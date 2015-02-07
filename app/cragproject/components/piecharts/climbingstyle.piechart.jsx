@@ -1,37 +1,63 @@
 var ClimbingStylePieChart = React.createClass({
 
   getInitialState: function() {
-    var _this = this;
-    return { climbs: [] };
+    return {
+      climbs: [
+        { style: 'Traditional' },
+        { style: 'Mixed' },
+        { style: 'Sport' },
+        { style: 'Aid' },
+        { style: 'Mixed' },
+        { style: 'Sport' },
+        { style: 'Sport' },
+        { style: 'Traditional' },
+        { style: 'Boulder' },
+        { style: 'Boulder' },
+        { style: 'Aid' },
+        { style: 'Traditional' }
+      ],
+      counts: [],
+      options: {} 
+    };
   },
 
   componentDidMount: function() {
-    var _this = this;
-
-    $.ajax({
-      url: '/api/climb/findRandom/' + _this.state.count,
-      method: 'GET',
-      dataType: 'json'
-    }).success(function(data) {
-      _this.setState({ climbs: data, count: _this.state.count });
-    }).fail(function(xhr, status, err) {
-      console.log('Fail!', xhr);
-    });
+    this.state.counts = [
+      {
+        value: _.countBy(this.state.climbs, function(climb) { return climb.style === 'Traditional' }),
+        color: 'rgba(247, 70, 74, 1)',
+        highlight: 'rgba(247, 70, 74, 0.75)',
+        label: 'Traditional'
+      },
+      {
+        value: _.countBy(this.state.climbs, function(climb) { return climb.style === 'Sport' }),
+        color: 'rgba(70, 191, 189, 1)',
+        highlight: '#rgba(70, 191, 189, 0.75)',
+        label: 'Sport'
+      },
+      {
+        value: _.countBy(this.state.climbs, function(climb) { return climb.style === 'Aid' }),
+        color: 'rgba(253, 180, 92, 1)',
+        highlight: 'rgba(253, 180, 92, 0.75)',
+        label: 'Aid'
+      },
+      {
+        value: _.countBy(this.state.climbs, function(climb) { return climb.style === 'Mixed' }),
+        color: 'rgba(220, 220, 220, 1)',
+        highlight: 'rgba(220, 220, 220, 0.75)',
+        label: 'Mixed'
+      },
+      {
+        value: _.countBy(this.state.climbs, function(climb) { return climb.style === 'Boulder' })
+          color: 'rgba(151, 187, 205, 1)',
+          highlight: 'rgba(151, 187, 205, 0.75)',
+          label: 'Boulder'
+      }
+    ];
   },
 
   render: function() {
-    var _this = this;
-
-    var climbLinks = _this.state.climbs.map(function (climb) {
-      return (
-        <li key={climb.id}><ClimbLink climb={climb} /></li>
-      );
-    });
-
-    return (
-      <div>
-      </div>
-    );
+    return <PieChart data={this.state.counts} options={this.state.options} />
   }
 
 });
