@@ -1,38 +1,61 @@
-var MostViewedClimbsList = React.createClass({displayName: "MostViewedClimbsList",
+var MostViewedList = React.createClass({ displayName: 'MostViewedList',
 
   getInitialState: function() {
-    var _this = this;
-    return { climbs: [] };
+    return { resources: [], resourceType: this.props.resourceType, count: this.props.count };
   },
 
   componentDidMount: function() {
     var _this = this;
 
     $.ajax({
-      url: '/api/climb/findMostViewed',
+      url: '/api/' + _this.state.resourceType + '/findMostViewed/' + _this.state.count,
       method: 'GET',
       dataType: 'json'
     }).success(function(data) {
-      _this.setState({ climbs: data });
+      _this.setState({ resources: data, resourceType: this.props.resourceType, count: this.props.count });
     }).fail(function(xhr, status, err) {
       console.log('Fail!', xhr);
     });
   },
 
   render: function() {
-    var _this = this;
+    var links;
 
-    var climbLinks = _this.state.climbs.map(function (climb) {
-      return (
-        React.createElement("li", {key: climb.id}, climb.views, " views - ", React.createElement(ClimbLink, {climb: climb}))
-      );
-    });
+    if (this.state.resourceType === 'location') {
+
+      links = this.state.resources.map(function (location) {
+        return (
+          React.createElement('li', {key: location.id}, location.views, ' views - ', React.createElement(LocationLink, { location: location }))
+        );
+      });
+
+    } else if (this.state.resourceType === 'sublocation') {
+
+      links = this.state.resources.map(function (sublocation) {
+        return (
+          React.createElement('li', {key: sublocation.id}, sublocation.views, ' views - ', React.createElement(SublocationLink, { sublocation: sublocation }))
+        );
+      });
+
+    } else if (this.state.resourceType === 'climb') {
+
+      links = this.state.resources.map(function (climb) {
+        return (
+          React.createElement('li', {key: climb.id}, climb.views, ' views - ', React.createElement(ClimbLink, { climb: climb }))
+        );
+      });
+
+    } else {
+
+      console.log('Unrecognized resource type!');
+
+    }
 
     return (
-      React.createElement("div", null, 
-        React.createElement("h3", null, "Most Viewed Climbs"), 
-        React.createElement("ul", null, 
-          climbLinks
+      React.createElement('div', null, 
+        React.createElement('h3', null, 'Most Viewed ' + this.state.resourceType + 's'), 
+        React.createElement('ul', null, 
+          links
         )
       )
     );
@@ -40,4 +63,4 @@ var MostViewedClimbsList = React.createClass({displayName: "MostViewedClimbsList
 
 });
 
-CragProject.value('MostViewedClimbsList', MostViewedClimbsList);
+CragProject.value('MostViewedList', MostViewedList);
