@@ -1,18 +1,22 @@
-<div id="login">
-  <md-input-container>
-    <label>Email</label>
-    <input ng-model="user.email" placeholder="Enter your email">
-  </md-input-container>
-  <md-input-container>
-    <label>Password</label>
-    <input ng-model="user.password" placeholder="Enter your password">
-  </md-input-container>
-  <md-input-container>
-    <label>First Name</label>
-    <input ng-model="user.firstName" placeholder="Enter your first name">
-  </md-input-container>
-  <md-input-container>
-    <label>Last Name</label>
-    <input ng-model="user.lastName" placeholder="Enter your last name">
-  </md-input-container>
-</div>
+<md-content>
+  <form name="loginForm">
+    <md-input-container flex>
+      <label>Email</label>
+      <input ng-model="RegisterCtrl.user.email" placeholder="Enter your email">
+    </md-input-container>
+    <md-input-container flex>
+      <label>Password</label>
+      <input ng-model="RegisterCtrl.user.password" placeholder="Enter your password">
+    </md-input-container>
+    <md-input-container flex>
+      <label>First Name</label>
+      <input ng-model="RegisterCtrl.user.firstName" placeholder="Enter your first name">
+    </md-input-container>
+    <md-input-container flex>
+      <label>Last Name</label>
+      <input ng-model="RegisterCtrl.user.lastName" placeholder="Enter your last name">
+    </md-input-container>
+
+    <md-button class="md-raised md-primary md-hue-1" style="min-width: 10em; min-height: 3em; color: white;">Sign Up</md-button>
+  </form>
+</md-content>
