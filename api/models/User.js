@@ -1,3 +1,5 @@
+var bcrypt = require('bcrypt-nodejs');
+
 module.exports = {
   attributes: {
 
@@ -13,6 +15,7 @@ module.exports = {
 
     email: {
       type: 'string',
+      unique: true,
       required: true
     },
 

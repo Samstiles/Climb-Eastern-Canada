@@ -29,9 +29,11 @@ module.exports = {
     .exec(function(err, foundUser) {
       if (err || !foundUser) return res.send(400, { error: err });
 
+      foundUser = foundUser[0];
+
       bcrypt.compare(params.password, foundUser.password, function(err, result) {
         if (err || !result) return res.send(400, { error: 'Invalid password.' });
-        var token = TokenService.encodeToken({ id: foundUser.id, email: foundUser.email, admin: user.is_admin });
+        var token = TokenService.encodeToken({ id: foundUser.id, email: foundUser.email, admin: foundUser.is_admin });
         return res.send(token);
       });
     });
