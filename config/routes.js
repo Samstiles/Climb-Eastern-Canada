@@ -77,17 +77,27 @@ module.exports.routes = {
     action: 'findRandom'
    },
 
-  'GET /api/climb/findMostViewed': {
+  'GET /api/sublocation/findRandom/:count': {
+    controller: 'SublocationController',
+    action: 'findRandom'
+   },
+
+  'GET /api/location/findRandom/:count': {
+    controller: 'LocationController',
+    action: 'findRandom'
+   },
+
+  'GET /api/climb/findMostViewed/:count': {
     controller: 'ClimbController',
     action: 'findMostViewed'
   },
 
-  'GET /api/sublocation/findMostViewed': {
+  'GET /api/sublocation/findMostViewed:/count': {
     controller: 'SublocationController',
     action: 'findMostViewed'
   },
 
-  'GET /api/location/findMostViewed': {
+  'GET /api/location/findMostViewed/:count': {
     controller: 'LocationController',
     action: 'findMostViewed'
   },

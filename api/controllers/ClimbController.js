@@ -104,13 +104,16 @@ module.exports = {
 
   /**
    * ====> [findMostViewed] <====
-   * @description     = Finds the 5 most viewed climbs in the database
-   * @endpoint        = '/api/climb/findMostViewed
+   * @description     = Finds the X most viewed climbs in the database
+   * @endpoint        = '/api/climb/findMostViewed/:count
    * @http_method     = 'GET'
-   * @params          = NO PARAMETERS REQUIRED
-   * @returns         = The 5 climb objects with the most views with associations populated
+   * @params          = A count integer of what # you want returned
+   * @params_example  = { count: 5 }
+   * @returns         = X climb objects with the most views with associations populated
    */
   findMostViewed: function(req, res) {
+    var params = req.params.all();
+
     Climb
     .find()
     .populate('location')
@@ -119,7 +122,7 @@ module.exports = {
       if (err || !foundClimbs) return res.send(400, { error: err });
       if (foundClimbs.length === 0) return res.send(foundClimbs);
 
-      foundClimbs = _.first(_.sortBy(foundClimbs, 'views'), 5).reverse();
+      foundClimbs = _.first(_.sortBy(foundClimbs, 'views'), params.count).reverse();
 
       return res.send(foundClimbs);
     });

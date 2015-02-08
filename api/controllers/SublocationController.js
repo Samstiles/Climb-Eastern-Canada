@@ -66,22 +66,25 @@ module.exports = {
 
   /**
    * ====> [findMostViewed] <====
-   * @description     = Finds the 5 most viewed sublocations in the database
-   * @endpoint        = '/api/sublocation/findMostViewed
+   * @description     = Finds the X most viewed sublocations in the database
+   * @endpoint        = '/api/sublocation/findMostViewed/:count
    * @http_method     = 'GET'
-   * @params          = NO PARAMETERS REQUIRED
-   * @returns         = The 5 sublocation objects with the most views with associations populated
+   * @params          = A count integer of what # you want returned
+   * @params_example  = { count: 5 }
+   * @returns         = X sublocation objects with the most views with associations populated
    */
   findMostViewed: function(req, res) {
+    var params = req.params.all();
+
     Sublocation
     .find()
-    .populate('location')
     .populate('climbs')
+    .populate('location')
     .exec(function(err, foundSublocations) {
       if (err || !foundSublocations) return res.send(400, { error: err });
       if (foundSublocations.length === 0) return res.send(foundSublocations);
 
-      foundSublocations = _.first(_.sortBy(foundSublocations, 'views'), 5).reverse();
+      foundSublocations = _.first(_.sortBy(foundSublocations, 'views'), params.count).reverse();
 
       return res.send(foundSublocations);
     });

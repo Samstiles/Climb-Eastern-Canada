@@ -22,12 +22,6 @@ CragProject.config(['$stateProvider',
         ctrl.sublocations = sublocations;
         ctrl.climbs = climbs;
         window.HomeController = ctrl;
-
-        React.render(
-          React.createElement(MostViewedList, null),
-          document.getElementById('mostViewed')
-        );
-
       }]
     });
 

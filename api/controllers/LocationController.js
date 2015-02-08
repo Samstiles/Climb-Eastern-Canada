@@ -68,22 +68,25 @@ module.exports = {
 
   /**
    * ====> [findMostViewed] <====
-   * @description     = Finds the 5 most viewed locations in the database
-   * @endpoint        = '/api/location/findMostViewed
+   * @description     = Finds the X most viewed locations in the database
+   * @endpoint        = '/api/location/findMostViewed/:count
    * @http_method     = 'GET'
-   * @params          = NO PARAMETERS REQUIRED
-   * @returns         = The 5 location objects with the most views with associations populated
+   * @params          = A count integer of what # you want returned
+   * @params_example  = { count: 5 }
+   * @returns         = X location objects with the most views with associations populated
    */
   findMostViewed: function(req, res) {
+    var params = req.params.all();
+
     Location
     .find()
-    .populate('sublocations')
     .populate('climbs')
+    .populate('sublocations')
     .exec(function(err, foundLocations) {
       if (err || !foundLocations) return res.send(400, { error: err });
       if (foundLocations.length === 0) return res.send(foundLocations);
 
-      foundLocations = _.first(_.sortBy(foundLocations, 'views'), 5).reverse();
+      foundLocations = _.first(_.sortBy(foundLocations, 'views'), params.count).reverse();
 
       return res.send(foundLocations);
     });
