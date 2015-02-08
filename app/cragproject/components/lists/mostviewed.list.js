@@ -8,9 +8,6 @@ CragProject.directive('mostViewedList', ['$rootScope', function($rootScope) {
     replace: true,
     link: function(scope, elem, attr) {
       elem = elem[0];
-      console.log('Elem:', elem.id);
-      console.log('Scope count:', scope.count);
-      console.log('Scope resource type:', scope.resourcetype);
 
       var MostViewedList = React.createClass({ displayName: 'MostViewedList',
         getInitialState: function() {
@@ -24,16 +21,12 @@ CragProject.directive('mostViewedList', ['$rootScope', function($rootScope) {
             method: 'GET',
             dataType: 'json'
           }).success(function(data) {
-            console.log('Data', data);
             _this.setState({ resources: data, resourceType: _this.state.resourceType, count: _this.state.count });
           }).fail(function(xhr, status, err) {
             console.log('Fail!', xhr);
           });
         },
         render: function() {
-
-          console.log(this.state);
-
           var links;
 
           if (this.state.resourceType === 'location') {
@@ -71,7 +64,7 @@ CragProject.directive('mostViewedList', ['$rootScope', function($rootScope) {
 
       React.render(
         React.createElement(MostViewedList, null),
-        document.getElementById(elem.id)
+        elem
       );
     }
   };
