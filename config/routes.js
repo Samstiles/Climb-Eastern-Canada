@@ -177,6 +177,14 @@ module.exports.routes = {
   'POST /api/admin/createBulkSublocations': {
     controller: 'AdminController',
     action: 'createBulkSublocations'
+  },
+
+  /**
+   * Authentication Routes
+   */
+  'POST /api/register/email': {
+    controller: 'UserController',
+    action: 'registerEmail'
   }
 
 };
