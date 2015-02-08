@@ -4,7 +4,7 @@ CragProject.config(['$stateProvider',
     $stateProvider.state('home', {
       url: '/home',
       templateUrl: '/cragproject/states/home.template.html',
-      // controllerAs: 'HomeCtrl',
+      controllerAs: 'HomeCtrl',
       resolve: {
         "locations": ['LocationFactory', function(LocationFactory) {
           return LocationFactory.findAllLocations();
