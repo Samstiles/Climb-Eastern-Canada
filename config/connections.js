@@ -2,17 +2,14 @@ module.exports.connections = {
   development_mongo: {
     adapter: 'sails-mongo',
     host: 'localhost',
-    port: 27017,
-    // user: 'username',
-    // password: 'password',
-    // database: 'your_mongo_db_name_here'
+    port: 27017
   },
   production_mongo: {
     adapter: 'sails-mongo',
-    host: 'localhost',
-    port: 27017,
-    // user: 'username',
-    // password: 'password',
-    // database: 'your_mongo_db_name_here'
+    host: 'ds041831.mongolab.com',
+    port: 41831,
+    user: 'heroku_app21316608',
+    password: 'jhkod0dqbnm5ncn2aohoi7aohj',
+    database: 'heroku_app21316608'
   }
 };

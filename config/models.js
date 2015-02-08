@@ -1,4 +1,4 @@
 module.exports.models = {
-  connection: 'development_mongo',
+  connection: 'production_mongo',
   migrate: 'alter'
 };
