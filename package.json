@@ -5,6 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "ejs": "~0.8.4",
     "friendly-validator": "0.0.2",
     "grunt": "0.4.2",
