@@ -185,6 +185,11 @@ module.exports.routes = {
   'POST /api/register/email': {
     controller: 'UserController',
     action: 'registerEmail'
+  },
+
+  'POST /api/login/email': {
+    controller: 'UserController',
+    action: 'loginEmail'
   }
 
 };
