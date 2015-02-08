@@ -122,7 +122,9 @@ module.exports = {
       if (err || !foundClimbs) return res.send(400, { error: err });
       if (foundClimbs.length === 0) return res.send(foundClimbs);
 
-      foundClimbs = _.first(_.sortBy(foundClimbs, 'views'), params.count).reverse();
+      foundClimbs = _.sortBy(foundClimbs, 'views');
+      foundClimbs = foundClimbs.slice(0, params.count);
+      foundClimbs = foundClimbs.reverse();
 
       return res.send(foundClimbs);
     });

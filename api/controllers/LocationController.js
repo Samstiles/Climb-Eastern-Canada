@@ -119,7 +119,9 @@ module.exports = {
       if (err || !foundLocations) return res.send(400, { error: err });
       if (foundLocations.length === 0) return res.send(foundLocations);
 
-      foundLocations = _.first(_.sortBy(foundLocations, 'views'), params.count).reverse();
+      foundLocations = _.sortBy(foundLocations, 'views');
+      foundLocations = foundLocations.slice(0, params.count);
+      foundLocations = foundLocations.reverse();
 
       return res.send(foundLocations);
     });

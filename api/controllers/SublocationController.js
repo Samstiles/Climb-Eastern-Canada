@@ -117,7 +117,9 @@ module.exports = {
       if (err || !foundSublocations) return res.send(400, { error: err });
       if (foundSublocations.length === 0) return res.send(foundSublocations);
 
-      foundSublocations = _.first(_.sortBy(foundSublocations, 'views'), params.count).reverse();
+      foundSublocations = _.sortBy(foundSublocations, 'views');
+      foundSublocations = foundSublocations.slice(0, params.count);
+      foundSublocations = foundSublocations.reverse();
 
       return res.send(foundSublocations);
     });
