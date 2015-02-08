@@ -1,4 +1,4 @@
-var MostViewedClimbsList = React.createClass({
+var MostViewedClimbsList = React.createClass({displayName: "MostViewedClimbsList",
 
   getInitialState: function() {
     var _this = this;
@@ -24,17 +24,17 @@ var MostViewedClimbsList = React.createClass({
 
     var climbLinks = _this.state.climbs.map(function (climb) {
       return (
-        <li key={climb.id}>{climb.views} views - <ClimbLink climb={climb} /></li>
+        React.createElement("li", {key: climb.id}, climb.views, " views - ", React.createElement(ClimbLink, {climb: climb}))
       );
     });
 
     return (
-      <div>
-        <h3>Most Viewed Climbs</h3>
-        <ul>
-          {climbLinks}
-        </ul>
-      </div>
+      React.createElement("div", null, 
+        React.createElement("h3", null, "Most Viewed Climbs"), 
+        React.createElement("ul", null, 
+          climbLinks
+        )
+      )
     );
   }
 

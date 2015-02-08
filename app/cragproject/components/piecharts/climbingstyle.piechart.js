@@ -1,4 +1,4 @@
-var ClimbingStylePieChart = React.createClass({
+var ClimbingStylePieChart = React.createClass({displayName: "ClimbingStylePieChart",
 
   getInitialState: function() {
     return {
@@ -63,10 +63,10 @@ var ClimbingStylePieChart = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <canvas ref="canvas" height="200" width="200" />
-        <div ref="legend"></div>
-      </div>
+      React.createElement("div", null, 
+        React.createElement("canvas", {ref: "canvas", height: "200", width: "200"}), 
+        React.createElement("div", {ref: "legend"})
+      )
     );
   }
 
