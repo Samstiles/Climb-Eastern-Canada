@@ -65,6 +65,39 @@ module.exports = {
   },
 
   /**
+   * ====> [findRandom] <====
+   * @description     = Finds five random sublocations in the database
+   * @endpoint        = '/api/sublocation/findRandom/{count}'
+   * @http_method     = 'GET'
+   * @params          = count (#)
+   * @params_example  = { count: 5 }
+   * @returns         = A # of random sublocation objects with associations populated
+   */
+  findRandom: function(req, res) {
+    var params = req.params.all();
+
+    Sublocation
+    .find()
+    .populate('location')
+    .populate('climbs')
+    .exec(function(err, foundSublocations) {
+      if (err || !foundSublocations) return res.send(400, { error: err });
+      if (foundSublocations.length === 0) return res.send(foundSublocations);
+
+      var results = [];
+
+      for (var selected, i = 0; i < params.count; i++) {
+        if (foundSublocations.length === 0) break;
+        selected = foundSublocations[Math.floor(Math.random() * foundSublocations.length)];
+        foundSublocations = _.without(foundSublocations, selected);
+        results.push(selected);
+      }
+
+      return res.send(results);
+    });
+  },
+
+  /**
    * ====> [findMostViewed] <====
    * @description     = Finds the X most viewed sublocations in the database
    * @endpoint        = '/api/sublocation/findMostViewed/:count

@@ -67,6 +67,39 @@ module.exports = {
   },
 
   /**
+   * ====> [findRandom] <====
+   * @description     = Finds five random locations in the database
+   * @endpoint        = '/api/location/findRandom/{count}'
+   * @http_method     = 'GET'
+   * @params          = count (#)
+   * @params_example  = { count: 5 }
+   * @returns         = A # of random location objects with associations populated
+   */
+  findRandom: function(req, res) {
+    var params = req.params.all();
+
+    Location
+    .find()
+    .populate('climbs')
+    .populate('sublocations')
+    .exec(function(err, foundLocations) {
+      if (err || !foundLocations) return res.send(400, { error: err });
+      if (foundLocations.length === 0) return res.send(foundLocations);
+
+      var results = [];
+
+      for (var selected, i = 0; i < params.count; i++) {
+        if (foundLocations.length === 0) break;
+        selected = foundLocations[Math.floor(Math.random() * foundLocations.length)];
+        foundLocations = _.without(foundLocations, selected);
+        results.push(selected);
+      }
+
+      return res.send(results);
+    });
+  },
+
+  /**
    * ====> [findMostViewed] <====
    * @description     = Finds the X most viewed locations in the database
    * @endpoint        = '/api/location/findMostViewed/:count
