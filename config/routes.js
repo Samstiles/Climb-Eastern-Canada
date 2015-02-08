@@ -92,7 +92,7 @@ module.exports.routes = {
     action: 'findMostViewed'
   },
 
-  'GET /api/sublocation/findMostViewed:/count': {
+  'GET /api/sublocation/findMostViewed/:count': {
     controller: 'SublocationController',
     action: 'findMostViewed'
   },
