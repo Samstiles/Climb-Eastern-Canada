@@ -145,7 +145,8 @@ module.exports = {
     console.log('Params', params);
 
     Location
-    .findOne(params.location)
+    .find()
+    .where({ id: params.location })
     .exec(function(err, foundLocation) {
 
       console.log('Err', err);
