@@ -21,15 +21,19 @@ module.exports = {
       console.log('Processing sublocation...', sublocation.name);
 
       Sublocation.create(sublocation).exec(function(err, createdSublocation) {
-        if (err || !createdSublocation) return callback('Error creating sublocation \'' + sublocation.name + '\'!');
+
+        console.log('Err:', err);
+        console.log('Sublocation', createdSublocation);
+
+        if (err || !createdSublocation) return callback('Error creating sublocation \'' + sublocation.name + '\'! Error: ', err);
 
         Location.findOne(createdSublocation.location).exec(function(err, foundLocation) {
-          if (err || !foundLocation) return callback('Error finding parent location of id \'' + sublocation.location + '\'!');
+          if (err || !foundLocation) return callback('Error finding parent location of id \'' + sublocation.location + '\'! Error: ', err);
 
           foundLocation.sublocations.add(createdSublocation);
 
           foundLocation.save(function(err, savedLocation) {
-            if (err || !savedLocation) return callback('Error saving parent location \'' + foundLocation.name + '\'!');
+            if (err || !savedLocation) return callback('Error saving parent location \'' + foundLocation.name + '\'! Error: ', err);
 
             return callback();
           });
