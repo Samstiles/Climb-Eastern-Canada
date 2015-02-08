@@ -145,10 +145,8 @@ module.exports = {
     console.log('Params', params);
 
     Location
-    .find()
-    .where({ id: params.location })
+    .findOne(params.location)
     .exec(function(err, foundLocation) {
-
       console.log('Err', err);
       console.log('Location', foundLocation);
       if (err || !foundLocation) return res.send(400, { error: err });
@@ -156,7 +154,6 @@ module.exports = {
       Sublocation
       .create(params)
       .exec(function(err, createdSublocation) {
-
         console.log('Err', err);
         console.log('Sublocation', createdSublocation);
         if (err || !createdSublocation) return res.send(400, { error: err });
