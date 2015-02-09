@@ -1,5 +1,5 @@
-CragProject.factory('UserModel', ['SocketService', '$q',
-  function(SocketService, $q) {
+CragProject.factory('UserModel', ['SocketService', '$q', '$http',
+  function(SocketService, $q, $http) {
 
     function User (userData) {
       if (userData) this.build(userData);
@@ -11,7 +11,7 @@ CragProject.factory('UserModel', ['SocketService', '$q',
         angular.extend(this, userData);
       },
 
-      login: function() {
+      loginEmail: function() {
         var _this = this;
         var deferred = $q.defer();
 
@@ -23,16 +23,18 @@ CragProject.factory('UserModel', ['SocketService', '$q',
         return deferred.promise();
       },
 
-      register: function() {
+      registerEmail: function() {
         var _this = this;
-        var deferred = $q.defer();
+        // var deferred = $q.defer();
 
         SocketService.post('/api/register/email', _this, function(body, res) {
-          if (res.statusCode !== 200) return deferred.reject(body);
-          return deferred.resolve(body);
+          if (res.statusCode !== 200) return console.error('Failed to register!', body);
+
+          console.log('body', body);
+          console.log('res', res);
         });
 
-        return deferred.promise();
+        // return deferred.promise();
       }
 
     };

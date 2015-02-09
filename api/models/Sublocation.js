@@ -8,7 +8,8 @@ module.exports = {
     },
 
     views: {
-      type: 'integer'
+      type: 'integer',
+      defaultsTo: 1
     },
 
     slug: {
