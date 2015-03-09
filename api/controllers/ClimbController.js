@@ -8,16 +8,18 @@ module.exports = {
    * @params          = NO PARAMETERS REQUIRED
    * @returns         = A list of every climb in the database
    */
-  findAll: function(req, res) {
+  findAll: function (req, res) {
     Climb
-    .find()
-    .populate('location')
-    .populate('sublocation')
-    .exec(function(err, foundClimbs) {
-      if (err || !foundClimbs) return res.send(400, { error: err });
+      .find()
+      .populate('location')
+      .populate('sublocation')
+      .exec(function (err, foundClimbs) {
+        if (err || !foundClimbs) return res.send(400, {
+          error: err
+        });
 
-      return res.send(foundClimbs);
-    });
+        return res.send(foundClimbs);
+      });
   },
 
   /**
@@ -29,18 +31,20 @@ module.exports = {
    * @params_example  = { id: "54d0270ab4581c07c14af9fb" }
    * @returns         = The climb that matched the MongoId passed in
    */
-  findById: function(req, res) {
+  findById: function (req, res) {
     var params = req.params.all();
 
     Climb
-    .findOne(params.id)
-    .populate('location')
-    .populate('sublocation')
-    .exec(function(err, foundClimb) {
-      if (err || !foundClimb) return res.send(400, { error: err });
+      .findOne(params.id)
+      .populate('location')
+      .populate('sublocation')
+      .exec(function (err, foundClimb) {
+        if (err || !foundClimb) return res.send(400, {
+          error: err
+        });
 
-      return res.send(foundClimb);
-    });
+        return res.send(foundClimb);
+      });
   },
 
   /**
@@ -52,21 +56,25 @@ module.exports = {
    * @params_example  = { slug: "sleigh-ride-AwxRSwU3" }
    * @returns         = The climb that matched the slug passed in
    */
-  findBySlug: function(req, res) {
+  findBySlug: function (req, res) {
     var params = req.params.all();
 
     Climb
-    .find()
-    .where({ slug: params.slug })
-    .populate('location')
-    .populate('sublocation')
-    .exec(function(err, foundClimb) {
-      if (err || !foundClimb || foundClimb.length === 0) return res.send(400, { error: err });
+      .find()
+      .where({
+        slug: params.slug
+      })
+      .populate('location')
+      .populate('sublocation')
+      .exec(function (err, foundClimb) {
+        if (err || !foundClimb || foundClimb.length === 0) return res.send(400, {
+          error: err
+        });
 
-      foundClimb = foundClimb[0];
+        foundClimb = foundClimb[0];
 
-      return res.send(foundClimb);
-    });
+        return res.send(foundClimb);
+      });
   },
 
   /**
@@ -78,28 +86,30 @@ module.exports = {
    * @params_example  = { count: 5 }
    * @returns         = A # of random climb objects with associations populated
    */
-  findRandom: function(req, res) {
+  findRandom: function (req, res) {
     var params = req.params.all();
 
     Climb
-    .find()
-    .populate('location')
-    .populate('sublocation')
-    .exec(function(err, foundClimbs) {
-      if (err || !foundClimbs) return res.send(400, { error: err });
-      if (foundClimbs.length === 0) return res.send(foundClimbs);
+      .find()
+      .populate('location')
+      .populate('sublocation')
+      .exec(function (err, foundClimbs) {
+        if (err || !foundClimbs) return res.send(400, {
+          error: err
+        });
+        if (foundClimbs.length === 0) return res.send(foundClimbs);
 
-      var results = [];
+        var results = [];
 
-      for (var selected, i = 0; i < params.count; i++) {
-        if (foundClimbs.length === 0) break;
-        selected = foundClimbs[Math.floor(Math.random() * foundClimbs.length)];
-        foundClimbs = _.without(foundClimbs, selected);
-        results.push(selected);
-      }
+        for (var selected, i = 0; i < params.count; i++) {
+          if (foundClimbs.length === 0) break;
+          selected = foundClimbs[Math.floor(Math.random() * foundClimbs.length)];
+          foundClimbs = _.without(foundClimbs, selected);
+          results.push(selected);
+        }
 
-      return res.send(results);
-    });
+        return res.send(results);
+      });
   },
 
   /**
@@ -111,23 +121,25 @@ module.exports = {
    * @params_example  = { count: 5 }
    * @returns         = X climb objects with the most views with associations populated
    */
-  findMostViewed: function(req, res) {
+  findMostViewed: function (req, res) {
     var params = req.params.all();
 
     Climb
-    .find()
-    .populate('location')
-    .populate('sublocation')
-    .exec(function(err, foundClimbs) {
-      if (err || !foundClimbs) return res.send(400, { error: err });
-      if (foundClimbs.length === 0) return res.send(foundClimbs);
+      .find()
+      .populate('location')
+      .populate('sublocation')
+      .exec(function (err, foundClimbs) {
+        if (err || !foundClimbs) return res.send(400, {
+          error: err
+        });
+        if (foundClimbs.length === 0) return res.send(foundClimbs);
 
-      foundClimbs = _.sortBy(foundClimbs, 'views');
-      foundClimbs = foundClimbs.slice(0, params.count);
-      foundClimbs = foundClimbs.reverse();
+        foundClimbs = _.sortBy(foundClimbs, 'views');
+        foundClimbs = foundClimbs.slice(0, params.count);
+        foundClimbs = foundClimbs.reverse();
 
-      return res.send(foundClimbs);
-    });
+        return res.send(foundClimbs);
+      });
   },
 
   /**
@@ -142,60 +154,70 @@ module.exports = {
    *                      grade: "V7" }
    * @returns         = The climb that was created
    */
-  create: function(req, res) {
+  create: function (req, res) {
     var params = req.params.all();
 
     Location
-    .findOne(params.location)
-    .exec(function(err, foundLocation) {
-      if (err || !foundLocation) return res.send(400, { error: err });
+      .findOne(params.location)
+      .exec(function (err, foundLocation) {
+        if (err || !foundLocation) return res.send(400, {
+          error: err
+        });
 
-      Climb
-      .create(params)
-      .exec(function(err, createdClimb) {
-        if (err || !createdClimb) return res.send(400, { error: err });
+        Climb
+          .create(params)
+          .exec(function (err, createdClimb) {
+            if (err || !createdClimb) return res.send(400, {
+              error: err
+            });
 
-        async.parallel([
+            async.parallel([
 
-          function(callback) {
-            if (!params.sublocation) callback();
+              function (callback) {
+                if (!params.sublocation) callback();
 
-            Sublocation
-            .findOne(params.sublocation)
-            .exec(function(err, foundSublocation) {
-              if (err || !foundSublocation) return callback(err);
-              
-              foundSublocation.climbs.add(createdClimb);
+                Sublocation
+                  .findOne(params.sublocation)
+                  .exec(function (err, foundSublocation) {
+                    if (err || !foundSublocation) return callback(err);
 
-              foundSublocation.save(function(err, savedSublocation) {
-                if (err || !savedSublocation) return callback(err);
-                
-                return callback();
+                    foundSublocation.climbs.add(createdClimb);
+
+                    foundSublocation.save(function (err, savedSublocation) {
+                      if (err || !savedSublocation) return callback(err);
+
+                      return callback();
+                    });
+                  });
+              }
+
+            ], function (err) {
+              if (err) return res.send(400, {
+                error: err
+              });
+
+              foundLocation.climbs.add(createdClimb);
+
+              foundLocation.save(function (err, savedLocation) {
+                if (err || !savedLocation) return res.send(400, {
+                  error: err
+                });
+
+                Climb
+                  .findOne(createdClimb.id)
+                  .populate('location')
+                  .populate('sublocation')
+                  .exec(function (err, foundClimb) {
+                    if (err || !foundClimb) return res.send(400, {
+                      error: err
+                    });
+
+                    return res.send(foundClimb);
+                  });
               });
             });
-          }
-
-        ], function(err) {
-          if (err) return res.send(400, { error: err });
-
-          foundLocation.climbs.add(createdClimb);
-
-          foundLocation.save(function(err, savedLocation) {
-            if (err || !savedLocation) return res.send(400, { error: err });
-
-            Climb
-            .findOne(createdClimb.id)
-            .populate('location')
-            .populate('sublocation')
-            .exec(function(err, foundClimb) {
-              if (err || !foundClimb) return res.send(400, { error: err });
-
-              return res.send(foundClimb);
-            });
           });
-        });
       });
-    });
   },
 
   /**
@@ -211,26 +233,30 @@ module.exports = {
    *                      description: "This is a new description" }
    * @returns         = The climb that was updated
    */
-  update: function(req, res) {
+  update: function (req, res) {
     var params = req.params.all();
 
     Climb
-    .update(params.id, params)
-    .exec(function(err, updatedClimb) {
-      if (err || !updatedClimb) return res.send(400, { error: err });
+      .update(params.id, params)
+      .exec(function (err, updatedClimb) {
+        if (err || !updatedClimb) return res.send(400, {
+          error: err
+        });
 
-      updatedClimb = updatedClimb[0];
+        updatedClimb = updatedClimb[0];
 
-      Climb
-      .findOne(updatedClimb.id)
-      .populate('location')
-      .populate('sublocation')
-      .exec(function(err, foundClimb) {
-        if (err || !foundClimb) return res.send(400, { error: err });
+        Climb
+          .findOne(updatedClimb.id)
+          .populate('location')
+          .populate('sublocation')
+          .exec(function (err, foundClimb) {
+            if (err || !foundClimb) return res.send(400, {
+              error: err
+            });
 
-        return res.send(foundClimb);
+            return res.send(foundClimb);
+          });
       });
-    });
   },
 
   /**
@@ -243,14 +269,19 @@ module.exports = {
    * @params_example  = { id: "54d02297ede0f879b76e2457" }
    * @returns         = A success message if successful
    */
-  destroy: function(req, res) {
+  destroy: function (req, res) {
     var params = req.params.all();
 
-    Climb.destroy({ id: params.id }).exec(function(err, destroyedClimb) {
-      if (err || !destroyedClimb) return res.send(400, { error: err });
+    Climb.destroy({
+        id: params.id
+      })
+      .exec(function (err, destroyedClimb) {
+        if (err || !destroyedClimb) return res.send(400, {
+          error: err
+        });
 
-      return res.send(200, "Successfully destroyed climb of id " + params.id + "!");
-    });
+        return res.send(200, "Successfully destroyed climb of id " + params.id + "!");
+      });
   }
 
 };

@@ -8,15 +8,17 @@ module.exports = {
    * @params          = NO PARAMETERS REQUIRED
    * @returns         = A list of every sublocation in the database
    */
-  findAll: function(req, res) {
+  findAll: function (req, res) {
     Sublocation
-    .find()
-    .populate('location')
-    .exec(function(err, foundSublocations) {
-      if (err || !foundSublocations) return res.send(400, { error: err });
+      .find()
+      .populate('location')
+      .exec(function (err, foundSublocations) {
+        if (err || !foundSublocations) return res.send(400, {
+          error: err
+        });
 
-      return res.send(foundSublocations);
-    });
+        return res.send(foundSublocations);
+      });
   },
 
   /**
@@ -28,17 +30,19 @@ module.exports = {
    * @params_example  = { id: "54d0270ab4581c07c14af9fb" }
    * @returns         = The sublocation that matched the MongoId passed in
    */
-  findById: function(req, res) {
+  findById: function (req, res) {
     var params = req.params.all();
 
     Sublocation
-    .findOne(params.id)
-    .populate('location')
-    .exec(function(err, foundSublocation) {
-      if (err || !foundSublocation) return res.send(400, { error: err });
+      .findOne(params.id)
+      .populate('location')
+      .exec(function (err, foundSublocation) {
+        if (err || !foundSublocation) return res.send(400, {
+          error: err
+        });
 
-      return res.send(foundSublocation);
-    });
+        return res.send(foundSublocation);
+      });
   },
 
   /**
@@ -50,18 +54,22 @@ module.exports = {
    * @params_example  = { slug: "unb-woodlot-AwxRSwU3" }
    * @returns         = The sublocation that matched the slug passed in
    */
-  findBySlug: function(req, res) {
+  findBySlug: function (req, res) {
     var params = req.params.all();
 
     Sublocation
-    .find()
-    .where({ slug: params.slug })
-    .populate('location')
-    .exec(function(err, foundSublocation) {
-      if (err || !foundSublocation || foundSublocation.length === 0) return res.send(400, { error: err });
-      foundSublocation = foundSublocation[0];
-      return res.send(foundSublocation);
-    });
+      .find()
+      .where({
+        slug: params.slug
+      })
+      .populate('location')
+      .exec(function (err, foundSublocation) {
+        if (err || !foundSublocation || foundSublocation.length === 0) return res.send(400, {
+          error: err
+        });
+        foundSublocation = foundSublocation[0];
+        return res.send(foundSublocation);
+      });
   },
 
   /**
@@ -73,28 +81,30 @@ module.exports = {
    * @params_example  = { count: 5 }
    * @returns         = A # of random sublocation objects with associations populated
    */
-  findRandom: function(req, res) {
+  findRandom: function (req, res) {
     var params = req.params.all();
 
     Sublocation
-    .find()
-    .populate('location')
-    .populate('climbs')
-    .exec(function(err, foundSublocations) {
-      if (err || !foundSublocations) return res.send(400, { error: err });
-      if (foundSublocations.length === 0) return res.send(foundSublocations);
+      .find()
+      .populate('location')
+      .populate('climbs')
+      .exec(function (err, foundSublocations) {
+        if (err || !foundSublocations) return res.send(400, {
+          error: err
+        });
+        if (foundSublocations.length === 0) return res.send(foundSublocations);
 
-      var results = [];
+        var results = [];
 
-      for (var selected, i = 0; i < params.count; i++) {
-        if (foundSublocations.length === 0) break;
-        selected = foundSublocations[Math.floor(Math.random() * foundSublocations.length)];
-        foundSublocations = _.without(foundSublocations, selected);
-        results.push(selected);
-      }
+        for (var selected, i = 0; i < params.count; i++) {
+          if (foundSublocations.length === 0) break;
+          selected = foundSublocations[Math.floor(Math.random() * foundSublocations.length)];
+          foundSublocations = _.without(foundSublocations, selected);
+          results.push(selected);
+        }
 
-      return res.send(results);
-    });
+        return res.send(results);
+      });
   },
 
   /**
@@ -106,23 +116,25 @@ module.exports = {
    * @params_example  = { count: 5 }
    * @returns         = X sublocation objects with the most views with associations populated
    */
-  findMostViewed: function(req, res) {
+  findMostViewed: function (req, res) {
     var params = req.params.all();
 
     Sublocation
-    .find()
-    .populate('climbs')
-    .populate('location')
-    .exec(function(err, foundSublocations) {
-      if (err || !foundSublocations) return res.send(400, { error: err });
-      if (foundSublocations.length === 0) return res.send(foundSublocations);
+      .find()
+      .populate('climbs')
+      .populate('location')
+      .exec(function (err, foundSublocations) {
+        if (err || !foundSublocations) return res.send(400, {
+          error: err
+        });
+        if (foundSublocations.length === 0) return res.send(foundSublocations);
 
-      foundSublocations = _.sortBy(foundSublocations, 'views');
-      foundSublocations = foundSublocations.slice(0, params.count);
-      foundSublocations = foundSublocations.reverse();
+        foundSublocations = _.sortBy(foundSublocations, 'views');
+        foundSublocations = foundSublocations.slice(0, params.count);
+        foundSublocations = foundSublocations.reverse();
 
-      return res.send(foundSublocations);
-    });
+        return res.send(foundSublocations);
+      });
   },
 
   /**
@@ -139,34 +151,40 @@ module.exports = {
    * @returns         = The sublocation that was created (and its parent
    *                    location object)
    */
-  create: function(req, res) {
+  create: function (req, res) {
     var params = req.params.all();
 
     console.log('Params', params);
 
     Location
-    .findOne(params.location)
-    .exec(function(err, foundLocation) {
-      console.log('Err', err);
-      console.log('Location', foundLocation);
-      if (err || !foundLocation) return res.send(400, { error: err });
-
-      Sublocation
-      .create(params)
-      .exec(function(err, createdSublocation) {
+      .findOne(params.location)
+      .exec(function (err, foundLocation) {
         console.log('Err', err);
-        console.log('Sublocation', createdSublocation);
-        if (err || !createdSublocation) return res.send(400, { error: err });
-
-        foundLocation.sublocations.add(createdSublocation);
-
-        foundLocation.save(function(err, savedLocation) {
-          if (err || !savedLocation) return res.send(400, { error: err });
-
-          return res.send(savedLocation);
+        console.log('Location', foundLocation);
+        if (err || !foundLocation) return res.send(400, {
+          error: err
         });
+
+        Sublocation
+          .create(params)
+          .exec(function (err, createdSublocation) {
+            console.log('Err', err);
+            console.log('Sublocation', createdSublocation);
+            if (err || !createdSublocation) return res.send(400, {
+              error: err
+            });
+
+            foundLocation.sublocations.add(createdSublocation);
+
+            foundLocation.save(function (err, savedLocation) {
+              if (err || !savedLocation) return res.send(400, {
+                error: err
+              });
+
+              return res.send(savedLocation);
+            });
+          });
       });
-    });
   },
 
   /**
@@ -183,25 +201,29 @@ module.exports = {
    * @returns         = The sublocation that was updated (and its
    *                    parent location object)
    */
-  update: function(req, res) {
+  update: function (req, res) {
     var params = req.params.all();
 
     Sublocation
-    .update(params.id, params)
-    .exec(function(err, updatedSublocation) {
-      if (err || !updatedSublocation) return res.send(400, { error: err });
+      .update(params.id, params)
+      .exec(function (err, updatedSublocation) {
+        if (err || !updatedSublocation) return res.send(400, {
+          error: err
+        });
 
-      updatedSublocation = updatedSublocation[0];
+        updatedSublocation = updatedSublocation[0];
 
-      Sublocation
-      .findOne(updatedSublocation.id)
-      .populate('location')
-      .exec(function(err, foundSublocation) {
-        if (err || !foundSublocation) return res.send(400, { error: err });
+        Sublocation
+          .findOne(updatedSublocation.id)
+          .populate('location')
+          .exec(function (err, foundSublocation) {
+            if (err || !foundSublocation) return res.send(400, {
+              error: err
+            });
 
-        return res.send(foundSublocation);
+            return res.send(foundSublocation);
+          });
       });
-    });
   },
 
   /**
@@ -214,14 +236,19 @@ module.exports = {
    * @params_example  = { id: "54d02297ede0f879b76e2457" }
    * @returns         = A success message if successful
    */
-  destroy: function(req, res) {
+  destroy: function (req, res) {
     var params = req.params.all();
 
-    Sublocation.destroy({ id: params.id }).exec(function(err, destroyedSublocation) {
-      if (err || !destroyedSublocation) return res.send(400, { error: err });
+    Sublocation.destroy({
+        id: params.id
+      })
+      .exec(function (err, destroyedSublocation) {
+        if (err || !destroyedSublocation) return res.send(400, {
+          error: err
+        });
 
-      return res.send(200, "Successfully destroyed sublocation of id " + params.id + "!");
-    });
+        return res.send(200, "Successfully destroyed sublocation of id " + params.id + "!");
+      });
   }
 
 };
