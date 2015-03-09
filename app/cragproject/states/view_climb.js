@@ -13,7 +13,7 @@ CragProject.config(['$stateProvider',
       },
       controller: ['climb', function(climb) {
         var ctrl = this;
-        ctrl.climb = JSON.stringify(climb, null, 2);
+        ctrl.climb = climb;
         window.ViewClimbController = ctrl;
       }]
     });

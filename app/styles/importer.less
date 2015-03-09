@@ -13,6 +13,7 @@ ul, li, p, h1, h2, h3, h4, h5, h6 {
 .site-wrapper {
   margin: 20px auto;
   max-width: 970px;
+  padding: 0 20px;
 }
 
 // Overall site header
@@ -20,6 +21,19 @@ header {
   .menu-hamburger {
     margin-right: 20px;
     cursor: pointer;
+  }
+}
+
+// Overall site nav
+nav {
+  margin-left: 20px;
+
+  ul {
+
+    li {
+      display: inline-block;
+      margin: 0 10px;
+    }
   }
 }
 
@@ -65,5 +79,63 @@ header {
       font-size: 20px;
       padding: 10px;
     }
+  }
+}
+
+/*View Climb*/
+.view-climb {
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .climb-details, .feature-photo {
+    margin-bottom: 20px;
+  }
+
+  .climb-details {
+    md-card {
+      margin: 0 10px 0 0;
+
+      md-item-content {
+        border-bottom: 1px solid #ddd;
+      }
+
+      md-item:last-child md-item-content{
+        border-bottom: none;
+      }
+
+      md-card-content {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+
+      h2 {
+        font-size: 16px;
+        width: 9em;
+      }
+    }
+  }
+
+  .feature-photo {
+      /*Temporary css to create placeholder until we get photos*/
+      background: #eee;
+      min-height: 300px;
+      width: 100%;
+      /*End temp css*/
+  }
+
+  .section {
+    margin-bottom: 20px;
+  }
+
+}
+
+/*View Location*/
+.view-location {
+  div.map {
+    background: #eee;
+    height: 400px;
+    width: 400px;
   }
 }
