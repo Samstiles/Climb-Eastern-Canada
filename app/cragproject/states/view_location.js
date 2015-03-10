@@ -13,7 +13,7 @@ CragProject.config(['$stateProvider',
       },
       controller: ['location', function(location) {
         var ctrl = this;
-        ctrl.location = JSON.stringify(location, null, 2);
+        ctrl.location = location;
         window.ViewLocationController = ctrl;
       }]
     });
