@@ -23,6 +23,7 @@ var jsFilesToInject = [
   // Dependencies like jQuery, or Angular are brought in here
   '/app/dependencies/angular/angular.js',
   '/app/dependencies/react/react.js',
+  '/app/dependencies/Chart.js/Chart.min.js',
   '/app/dependencies/angular-ui-router/release/angular-ui-router.js',
   '**/cragproject/**/*.js'
 ];
