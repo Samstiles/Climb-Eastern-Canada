@@ -20,11 +20,12 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-  // Dependencies like jQuery, or Angular are brought in here
-  '/app/dependencies/angular/angular.js',
-  '/app/dependencies/react/react.js',
-  '/app/dependencies/Chart.js/Chart.min.js',
-  '/app/dependencies/angular-ui-router/release/angular-ui-router.js',
+  '**/dependencies/angular/angular.js',
+  '**/dependencies/react/react.js',
+  '**/dependencies/Chart.js/Chart.min.js',
+  '**/dependencies/angular-ui-router/release/angular-ui-router.js',
+  '**/cragproject/bootstrap/init.js',
+  '**/cragproject/bootstrap/bootstrap.js',
   '**/cragproject/**/*.js'
 ];
 
