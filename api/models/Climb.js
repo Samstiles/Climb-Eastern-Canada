@@ -92,9 +92,7 @@ module.exports = {
   },
 
   beforeValidate: function(values, cb) {
-    if (!values.name) return cb();
-    // if (values.views) delete values.views;
-
+    if (values.slug) return cb();
     values.slug = SlugService.sluggifyString(values.name);
     return cb();
   },

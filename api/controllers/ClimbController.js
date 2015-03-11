@@ -158,7 +158,7 @@ module.exports = {
         async.parallel([
 
           function(callback) {
-            if (!params.sublocation) callback();
+            if (!params.sublocation) return callback();
 
             Sublocation
             .findOne(params.sublocation)
@@ -217,8 +217,7 @@ module.exports = {
     Climb
     .update(params.id, params)
     .exec(function(err, updatedClimb) {
-      if (err || !updatedClimb) return res.send(400, { error: err });
-
+      if (err || updatedClimb.length === 0) return res.send(400, { error: err });
       updatedClimb = updatedClimb[0];
 
       Climb
