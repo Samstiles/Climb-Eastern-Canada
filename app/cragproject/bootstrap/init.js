@@ -1,23 +1,28 @@
-jQuery(document).ready(function($) {
-  $(window).load(function(){
-      $('body').show();
+jQuery(document)
+  .ready(function ($) {
+    $(window)
+      .load(function () {
+        $('body')
+          .show();
+      });
   });
-});
 
-var CragProject = angular.module('CragProject', ['ui.router', 'ngMaterial', 'react']);
+var CragProject = angular.module('CragProject', ['ui.router', 'ngMaterial']);
 
 CragProject.run(['$rootScope', '$mdSidenav',
-  function($rootScope, $mdSidenav) {
+  function ($rootScope, $mdSidenav) {
 
-    $rootScope.openSideNav = function() {
-      $mdSidenav('left').open();
+    $rootScope.openSideNav = function () {
+      $mdSidenav('left')
+        .open();
     };
 
-    $rootScope.closeSideNav = function() {
-      $mdSidenav('left').close();
+    $rootScope.closeSideNav = function () {
+      $mdSidenav('left')
+        .close();
     };
 
-    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       console.error('Error transitioning to state: \'' + toState.name + '\'...');
       console.error('Additional debugging:\n\n');
       console.error('-> toState:', toState);
@@ -28,7 +33,7 @@ CragProject.run(['$rootScope', '$mdSidenav',
       console.error('-> event:', event);
     });
 
-    $rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams){ 
+    $rootScope.$on('$stateNotFound', function (event, unfoundState, fromState, fromParams) {
       console.log('Missing state: \'' + unfoundState + '\'...');
       console.log('Additional debugging:\n\n');
       console.log('-> event', event);
@@ -37,21 +42,11 @@ CragProject.run(['$rootScope', '$mdSidenav',
       console.log('-> fromParams', fromParams);
     });
 
-    // $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
-    //   console.log('Beginning transition to state: \'' + toState.name + '\'...');
-    //   console.log('Additional debugging:\n\n');
-    //   console.log('-> event:', event);
-    //   console.log('-> toState:', toState);
-    //   console.log('-> toParams:', toParams);
-    //   console.log('-> fromState:', fromState);
-    //   console.log('-> fromParams:', fromParams);
-    // });
-
   }
 ]);
 
 CragProject.config(['$urlRouterProvider',
-  function($urlRouterProvider) {
+  function ($urlRouterProvider) {
     $urlRouterProvider.otherwise('/home');
   }
 ]);

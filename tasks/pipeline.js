@@ -16,11 +16,19 @@ var cssFilesToInject = [
   'styles/**/*.css'
 ];
 
-
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-  // Dependencies like jQuery, or Angular are brought in here
+  '**/dependencies/angular/angular.js',
+  '**/dependencies/react/react.js',
+  '**/dependencies/Chart.js/Chart.min.js',
+  '**/dependencies/angular-ui-router/release/angular-ui-router.js',
+  '**/dependencies/angular-material/angular-material.js',
+  '**/dependencies/angular-animate/angular-animate.js',
+  '**/dependencies/angular-aria/angular-aria.js',
+  '**/dependencies/jquery/dist/jquery.min.js',
+  '**/cragproject/bootstrap/init.js',
+  '**/cragproject/bootstrap/bootstrap.js',
   '**/cragproject/**/*.js'
 ];
 
@@ -37,17 +45,15 @@ var templateFilesToInject = [
   'templates/**/*.html'
 ];
 
-
-
 // Prefix relative paths to source files so they point to the proper locations
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where
 // they reside in the first place)
-module.exports.cssFilesToInject = cssFilesToInject.map(function(path) {
+module.exports.cssFilesToInject = cssFilesToInject.map(function (path) {
   return '.tmp/public/' + path;
 });
-module.exports.jsFilesToInject = jsFilesToInject.map(function(path) {
+module.exports.jsFilesToInject = jsFilesToInject.map(function (path) {
   return '.tmp/public/' + path;
 });
-module.exports.templateFilesToInject = templateFilesToInject.map(function(path) {
+module.exports.templateFilesToInject = templateFilesToInject.map(function (path) {
   return 'app/' + path;
 });
