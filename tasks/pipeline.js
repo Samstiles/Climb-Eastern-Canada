@@ -16,7 +16,6 @@ var cssFilesToInject = [
   'styles/**/*.css'
 ];
 
-
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
@@ -25,6 +24,8 @@ var jsFilesToInject = [
   '**/dependencies/Chart.js/Chart.min.js',
   '**/dependencies/angular-ui-router/release/angular-ui-router.js',
   '**/dependencies/angular-material/angular-material.js',
+  '**/dependencies/angular-animate/angular-animate.js',
+  '**/dependencies/angular-aria/angular-aria.js',
   '**/dependencies/jquery/dist/jquery.min.js',
   '**/cragproject/bootstrap/init.js',
   '**/cragproject/bootstrap/bootstrap.js',
@@ -43,8 +44,6 @@ var jsFilesToInject = [
 var templateFilesToInject = [
   'templates/**/*.html'
 ];
-
-
 
 // Prefix relative paths to source files so they point to the proper locations
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where
