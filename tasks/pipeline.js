@@ -24,6 +24,7 @@ var jsFilesToInject = [
   '**/dependencies/react/react.js',
   '**/dependencies/Chart.js/Chart.min.js',
   '**/dependencies/angular-ui-router/release/angular-ui-router.js',
+  '**/dependencies/jquery/dist/jquery.min.js',
   '**/cragproject/bootstrap/init.js',
   '**/cragproject/bootstrap/bootstrap.js',
   '**/cragproject/**/*.js'
