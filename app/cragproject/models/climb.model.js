@@ -1,5 +1,5 @@
-CragProject.factory('ClimbModel', ['SocketService', '$q',
-  function(SocketService, $q) {
+CragProject.factory('ClimbModel', ['$http', 'SocketService', '$q',
+  function($http, SocketService, $q) {
 
     function Climb (climbData) {
       if (climbData) this.build(climbData);
@@ -36,10 +36,17 @@ CragProject.factory('ClimbModel', ['SocketService', '$q',
 
       create: function() {
         var self = this;
+        $http.post('/api/climb', self).success(function(data, status) {
+
+        });
       },
 
       update: function() {
         var self = this;
+        self.location = self.location.id;
+        $http.put('/api/climb', self).success(function(data, status) {
+
+        });
       }
 
     };
