@@ -1,4 +1,4 @@
-CragProject.service('SublocationFactory', ['StorageService', '$q', 'SublocationModel',
+CragProject.service('SublocationFactory', ['StorageService', '$q', '$http', 'SublocationModel',
   function (StorageService, $q, $http, SublocationModel) {
 
     this.findAllSublocations = function () {
@@ -20,6 +20,8 @@ CragProject.service('SublocationFactory', ['StorageService', '$q', 'SublocationM
 
       return deferred.promise;
     };
+
+    return this;
 
   }
 ]);

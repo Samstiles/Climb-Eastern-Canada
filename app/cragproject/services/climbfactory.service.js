@@ -1,4 +1,4 @@
-CragProject.service('ClimbFactory', ['StorageService', '$q', 'ClimbModel',
+CragProject.service('ClimbFactory', ['StorageService', '$q', '$http', 'ClimbModel',
   function (StorageService, $q, $http, ClimbModel) {
 
     this.findAllClimbs = function () {
@@ -20,6 +20,8 @@ CragProject.service('ClimbFactory', ['StorageService', '$q', 'ClimbModel',
 
       return deferred.promise;
     };
+
+    return this;
 
   }
 ]);
