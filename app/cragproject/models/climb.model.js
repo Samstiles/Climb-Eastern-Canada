@@ -36,18 +36,14 @@ CragProject.factory('ClimbModel', ['$http', '$q',
       create: function () {
         var self = this;
         $http.post('/api/climb', self)
-          .success(function (data, status) {
-
-          });
+          .success(function (data, status) {});
       },
 
       update: function () {
         var self = this;
         self.location = self.location.id;
         $http.put('/api/climb', self)
-          .success(function (data, status) {
-
-          });
+          .success(function (data, status) {});
       }
 
     };
