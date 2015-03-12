@@ -1,4 +1,4 @@
-CragProject.service('ClimbFactory', ['StorageService', '$q', 'ClimbModel',
+CragProject.service('ClimbFactory', ['StorageService', '$q', '$http', 'ClimbModel',
   function (StorageService, $q, $http, ClimbModel) {
 
     this.findAllClimbs = function () {
@@ -8,7 +8,7 @@ CragProject.service('ClimbFactory', ['StorageService', '$q', 'ClimbModel',
 
       $http.get('/api/climb/findAll')
         .success(function (data, status) {
-          _.each(body, function (climb) {
+          _.each(data, function (climb) {
             var l = new ClimbModel(climb);
             climbs.push(l);
           });
@@ -20,6 +20,8 @@ CragProject.service('ClimbFactory', ['StorageService', '$q', 'ClimbModel',
 
       return deferred.promise;
     };
+
+    return this;
 
   }
 ]);

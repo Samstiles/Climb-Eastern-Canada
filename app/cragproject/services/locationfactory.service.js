@@ -21,5 +21,7 @@ CragProject.service('LocationFactory', ['StorageService', '$q', '$http', 'Locati
       return deferred.promise;
     };
 
+    return this;
+
   }
 ]);

@@ -1,4 +1,4 @@
-CragProject.service('SublocationFactory', ['StorageService', '$q', 'SublocationModel',
+CragProject.service('SublocationFactory', ['StorageService', '$q', '$http', 'SublocationModel',
   function (StorageService, $q, $http, SublocationModel) {
 
     this.findAllSublocations = function () {
@@ -8,7 +8,7 @@ CragProject.service('SublocationFactory', ['StorageService', '$q', 'SublocationM
 
       $http.get('/api/sublocation/findAll')
         .success(function (data, status) {
-          _.each(body, function (sublocation) {
+          _.each(data, function (sublocation) {
             var l = new SublocationModel(sublocation);
             sublocations.push(l);
           });
@@ -20,6 +20,8 @@ CragProject.service('SublocationFactory', ['StorageService', '$q', 'SublocationM
 
       return deferred.promise;
     };
+
+    return this;
 
   }
 ]);
