@@ -28,6 +28,7 @@ var jsFilesToInject = [
   '**/dependencies/angular-animate/angular-animate.js',
   '**/dependencies/angular-aria/angular-aria.js',
   '**/dependencies/jquery/dist/jquery.min.js',
+  '**/dependencies/jquery-backstretch/jquery-backstretch.min.js',
   '**/cragproject/bootstrap/init.js',
   '**/cragproject/bootstrap/bootstrap.js',
   '**/cragproject/**/*.js'
