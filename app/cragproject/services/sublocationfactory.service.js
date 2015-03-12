@@ -1,25 +1,25 @@
-CragProject.service('SublocationFactory',
-  ['StorageService', '$q', 'SocketService', 'SublocationModel',
-  function(StorageService, $q, SocketService, SublocationModel) {
+CragProject.service('SublocationFactory', ['StorageService', '$q', 'SublocationModel',
+  function (StorageService, $q, $http, SublocationModel) {
 
-    this.findAllSublocations = function() {
-      var self = this;
+    this.findAllSublocations = function () {
+      var _this = this;
       var deferred = $q.defer();
       var sublocations = [];
 
-      SocketService.get('/api/sublocation/findAll', function(body, res) {
-        if (res.statusCode !== 200) return deferred.reject(body);
-
-        _.each(body, function(sublocation) {
-          var l = new SublocationModel(sublocation);
-          sublocations.push(l);
+      $http.get('/api/sublocation/findAll')
+        .success(function (data, status) {
+          _.each(body, function (sublocation) {
+            var l = new SublocationModel(sublocation);
+            sublocations.push(l);
+          });
+          deferred.resolve(sublocations);
+        })
+        .error(function (data, status) {
+          deferred.reject(data);
         });
-
-        return deferred.resolve(sublocations);
-      });
 
       return deferred.promise;
     };
 
-  }]
-);
+  }
+]);

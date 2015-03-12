@@ -1,22 +1,22 @@
 CragProject.config(['$stateProvider',
-  function($stateProvider) {
+  function ($stateProvider) {
 
     $stateProvider.state('home', {
       url: '/home',
       templateUrl: '/cragproject/states/home.template.html',
       controllerAs: 'HomeCtrl',
       resolve: {
-        "locations": ['LocationFactory', function(LocationFactory) {
+        locations: ['LocationFactory', function (LocationFactory) {
           return LocationFactory.findAllLocations();
         }],
-        "sublocations": ['SublocationFactory', function(SublocationFactory) {
+        sublocations: ['SublocationFactory', function (SublocationFactory) {
           return SublocationFactory.findAllSublocations();
         }],
-        "climbs": ['ClimbFactory', function(ClimbFactory) {
+        climbs: ['ClimbFactory', function (ClimbFactory) {
           return ClimbFactory.findAllClimbs();
         }]
       },
-      controller: ['locations', 'sublocations', 'climbs', function(locations, sublocations, climbs) {
+      controller: ['locations', 'sublocations', 'climbs', function (locations, sublocations, climbs) {
         var ctrl = this;
         ctrl.locations = locations;
         ctrl.sublocations = sublocations;

@@ -1,45 +1,44 @@
-CragProject.factory('ClimbModel', ['SocketService', '$q',
-  function(SocketService, $q) {
+CragProject.factory('ClimbModel', ['$http', '$q',
+  function ($http, $q) {
 
-    function Climb (climbData) {
+    function Climb(climbData) {
       if (climbData) this.build(climbData);
     }
 
     Climb.prototype = {
 
-      build: function(climbData) {
+      build: function (climbData) {
         angular.extend(this, climbData);
       },
 
-      loadFromId: function(id) {
-        var self = this;
+      loadFromId: function (id) {
+        var _this = this;
       },
 
-      loadFromSlug: function(slug) {
-        var self = this;
+      loadFromSlug: function (slug) {
+        var _this = this;
         var deferred = $q.defer();
-
-        SocketService.get('/api/climb/findBySlug/' + slug, function(body, res) {
-          if (res.statusCode !== 200) deferred.reject(body);
-
-          self.build(body);
-
-          deferred.resolve(self);
-        });
-
+        $http.get('/api/climb/findBySlug/' + slug)
+          .success(function (data, status) {
+            _this.build(data);
+            deferred.resolve(_this);
+          })
+          .error(function (data, status) {
+            deferred.reject(data);
+          });
         return deferred.promise;
       },
 
-      delete: function() {
-        var self = this;
+      delete: function () {
+        var _this = this;
       },
 
-      create: function() {
-        var self = this;
+      create: function () {
+        var _this = this;
       },
 
-      update: function() {
-        var self = this;
+      update: function () {
+        var _this = this;
       }
 
     };

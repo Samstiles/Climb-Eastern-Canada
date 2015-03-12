@@ -19,6 +19,7 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
+  '**/dependencies/underscore/underscore.js',
   '**/dependencies/angular/angular.js',
   '**/dependencies/react/react.js',
   '**/dependencies/Chart.js/Chart.min.js',

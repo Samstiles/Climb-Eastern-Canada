@@ -1,45 +1,44 @@
-CragProject.factory('SublocationModel', ['SocketService', '$q',
-  function(SocketService, $q) {
+CragProject.factory('SublocationModel', ['$http', '$q',
+  function ($http, $q) {
 
-    function Sublocation (sublocationData) {
+    function Sublocation(sublocationData) {
       if (sublocationData) this.build(sublocationData);
     }
 
     Sublocation.prototype = {
 
-      build: function(sublocationData) {
+      build: function (sublocationData) {
         angular.extend(this, sublocationData);
       },
 
-      loadFromId: function(id) {
-        var self = this;
+      loadFromId: function (id) {
+      var _this = this;
       },
 
-      loadFromSlug: function(slug) {
-        var self = this;
+      loadFromSlug: function (slug) {
+        var _this = this;
         var deferred = $q.defer();
-
-        SocketService.get('/api/sublocation/findBySlug/' + slug, function(body, res) {
-          if (res.statusCode !== 200) return deferred.reject(body);
-
-          self.build(body);
-
-          return deferred.resolve(self);
-        });
-
+        $http.get('/api/sublocation/findBySlug/' + slug)
+          .success(function (data, status) {
+            _this.build(data);
+            deferred.resolve(_this);
+          })
+          .error(function (data, status) {
+            deferred.reject(data);
+          });
         return deferred.promise;
       },
 
-      delete: function() {
-        var self = this;
+      delete: function () {
+        var _this = this;
       },
 
-      create: function() {
-        var self = this;
+      create: function () {
+        var _this = this;
       },
 
-      update: function() {
-        var self = this;
+      update: function () {
+        var _this = this;
       }
 
     };

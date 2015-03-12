@@ -1,25 +1,25 @@
-CragProject.service('LocationFactory',
-  ['StorageService', '$q', 'SocketService', 'LocationModel',
-  function(StorageService, $q, SocketService, LocationModel) {
+CragProject.service('LocationFactory', ['StorageService', '$q', '$http', 'LocationModel',
+  function (StorageService, $q, $http, LocationModel) {
 
-    this.findAllLocations = function() {
-      var self = this;
+    this.findAllLocations = function () {
+      var _this = this;
       var deferred = $q.defer();
       var locations = [];
 
-      SocketService.get('/api/location/findAll', function(body, res) {
-        if (res.statusCode !== 200) return deferred.reject(body);
-
-        _.each(body, function(location) {
-          var l = new LocationModel(location);
-          locations.push(l);
+      $http.get('/api/location/findAll')
+        .success(function (data, status) {
+          _.each(data, function (location) {
+            var l = new LocationModel(location);
+            locations.push(l);
+          });
+          deferred.resolve(locations);
+        })
+        .error(function (data, status) {
+          deferred.reject(data);
         });
-
-        return deferred.resolve(locations);
-      });
 
       return deferred.promise;
     };
 
-  }]
-);
+  }
+]);
