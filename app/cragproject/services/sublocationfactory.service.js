@@ -8,7 +8,7 @@ CragProject.service('SublocationFactory', ['StorageService', '$q', '$http', 'Sub
 
       $http.get('/api/sublocation/findAll')
         .success(function (data, status) {
-          _.each(body, function (sublocation) {
+          _.each(data, function (sublocation) {
             var l = new SublocationModel(sublocation);
             sublocations.push(l);
           });

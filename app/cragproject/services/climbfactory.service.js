@@ -8,7 +8,7 @@ CragProject.service('ClimbFactory', ['StorageService', '$q', '$http', 'ClimbMode
 
       $http.get('/api/climb/findAll')
         .success(function (data, status) {
-          _.each(body, function (climb) {
+          _.each(data, function (climb) {
             var l = new ClimbModel(climb);
             climbs.push(l);
           });
