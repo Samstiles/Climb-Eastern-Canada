@@ -19,7 +19,6 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-  'https://maps.googleapis.com/maps/api/js?key=AIzaSyAsRkZA0O7DAbN-76x_Icn9Zx7zLNSkhtQ',
   '**/dependencies/underscore/underscore.js',
   '**/dependencies/angular/angular.js',
   '**/dependencies/react/react.js',
