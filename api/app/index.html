@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="CragProject">
+
+  <head>
+    <title>Crag Project</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="/dependencies/materialize/dist/css/materialize.css" type='text/css'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' type='text/css'>
+    <link rel="stylesheet" href="/dependencies/normalize-css/normalize.css" type='text/css'>
+    <link rel="stylesheet" href="/dependencies/font-awesome/css/font-awesome.min.css" type='text/css'>
+    <link rel="stylesheet" href="/styles/importer.css" type='text/css'>
+  </head>
+
+  <body style="display: none;" md-theme="default">
+
+    <div ng-include src="'/cragproject/partials/header.partial.html'"></div>
+
+    <div ng-include src="'/cragproject/partials/sidenav.partial.html'"></div>
+
+    <div class="site-wrapper">
+      <div ui-view></div>
+    </div>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsRkZA0O7DAbN-76x_Icn9Zx7zLNSkhtQ"></script>
+    <!--SCRIPTS-->
+    <script type="text/javascript" src="/dependencies/underscore/underscore.js"></script>
+    <script type="text/javascript" src="/dependencies/angular/angular.js"></script>
+    <script type="text/javascript" src="/dependencies/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="/dependencies/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="/dependencies/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="/dependencies/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/dependencies/materialize/dist/js/materialize.js"></script>
+    <script type="text/javascript" src="/dependencies/jquery-backstretch/jquery.backstretch.min.js"></script>
+    <script type="text/javascript" src="/cragproject/bootstrap/init.js"></script>
+    <script type="text/javascript" src="/cragproject/bootstrap/config.js"></script>
+    <script type="text/javascript" src="/cragproject/components/backstretch.js"></script>
+    <script type="text/javascript" src="/cragproject/components/barcharts/grades.barchart.js"></script>
+    <script type="text/javascript" src="/cragproject/components/barcharts/sendsperlocation.barchart.js"></script>
+    <script type="text/javascript" src="/cragproject/components/barcharts/starratings.barchart.js"></script>
+    <script type="text/javascript" src="/cragproject/components/links/climb.link.js"></script>
+    <script type="text/javascript" src="/cragproject/components/links/location.link.js"></script>
+    <script type="text/javascript" src="/cragproject/components/links/sublocation.link.js"></script>
+    <script type="text/javascript" src="/cragproject/components/lists/mostviewed.list.js"></script>
+    <script type="text/javascript" src="/cragproject/components/lists/random.list.js"></script>
+    <script type="text/javascript" src="/cragproject/components/maps/locationSelector.js"></script>
+    <script type="text/javascript" src="/cragproject/components/maps/locationViewer.js"></script>
+    <script type="text/javascript" src="/cragproject/components/piecharts/climbingstyle.piechart.js"></script>
+    <script type="text/javascript" src="/cragproject/components/piecharts/protectionstyle.piechart.js"></script>
+    <script type="text/javascript" src="/cragproject/models/climb.model.js"></script>
+    <script type="text/javascript" src="/cragproject/models/location.model.js"></script>
+    <script type="text/javascript" src="/cragproject/models/sublocation.model.js"></script>
+    <script type="text/javascript" src="/cragproject/models/user.model.js"></script>
+    <script type="text/javascript" src="/cragproject/services/climbfactory.service.js"></script>
+    <script type="text/javascript" src="/cragproject/services/locationfactory.service.js"></script>
+    <script type="text/javascript" src="/cragproject/services/storage.service.js"></script>
+    <script type="text/javascript" src="/cragproject/services/sublocationfactory.service.js"></script>
+    <script type="text/javascript" src="/cragproject/states/create_climb.js"></script>
+    <script type="text/javascript" src="/cragproject/states/edit_climb.js"></script>
+    <script type="text/javascript" src="/cragproject/states/home.js"></script>
+    <script type="text/javascript" src="/cragproject/states/login.js"></script>
+    <script type="text/javascript" src="/cragproject/states/register.js"></script>
+    <script type="text/javascript" src="/cragproject/states/view_climb.js"></script>
+    <script type="text/javascript" src="/cragproject/states/view_location.js"></script>
+    <script type="text/javascript" src="/cragproject/states/view_sublocation.js"></script>
+    <!--SCRIPTS END-->
+
+  </body>
+
+</html>
