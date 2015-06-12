@@ -1,26 +1,39 @@
 <!DOCTYPE html>
-<html ng-app="ClimbEasternCanada">
-<head>
-  <title>Climb Eastern Canada</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="../dependencies/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../dependencies/normalize-css/normalize.css">
-  <link rel="stylesheet" href="../dependencies/materialize/dist/css/materialize.min.css">
-</head>
-<body style="display: none;">
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title>Climb Eastern Canada</title>
+    <!-- build:css styles/app.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="cec">
 
-  <!-- UI-router parent div -->
-  <ui-view />
+    <header>
+      <site-header></site-header>
+      <site-nav></site-nav>
+    </header>
 
-  <!-- Deps -->
-  <script type="text/javascript" src="../dependencies/angular/angular.js"></script>
-  <script type="text/javascript" src="../dependencies/angular-ui-router/release/angular-ui-router.js"></script>
-  <script type="text/javascript" src="../dependencies/jquery/dist/jquery.js"></script>
-  <script type="text/javascript" src="../dependencies/materialize/dist/js/materialize.js"></script>
-  <script type="text/javascript" src="../dependencies/underscore/underscore.js"></script>
+    <div class="site-wrapper" ui-view=""></div>
 
-  <!-- Src -->
-  <script type="text/javascript" src="src.js"></script>
-</body>
+    <!-- build:jsLib js/lib.js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/materialize/dist/js/materialize.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:appJs js/app.js -->
+    <script src="app.js"></script>
+    <script src="appConfig.js"></script>
+    <script src="constants.js"></script>
+    <script src="services/stateListener.js"></script>
+    <script src="services/breadcrumbService.js"></script>
+    <script src="controllers/homeController.js"></script>
+    <script src="controllers/climbController.js"></script>
+    <script src="components/siteHeader/siteHeader.js"></script>
+    <script src="components/siteNav/siteNav.js"></script>
+    <!-- endbuild -->
+  </body>
 </html>

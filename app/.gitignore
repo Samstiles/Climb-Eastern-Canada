@@ -1,0 +1,7 @@
+/app/styles/app.css
+/bower_components
+/node_modules
+/.idea
+/dist
+/app/bower_components
+/app/styles/*.css

@@ -1,0 +1,52 @@
+cassandra:
+  image: "docker.liveopslabs.com/cassandra"
+  ports:
+    - "9042:9042"
+    - "9160:9160"
+  hostname: cassandra
+zookeeper:
+  image: "docker.liveopslabs.com/zookeeper"
+  ports:
+    - "2181:2181"
+    - "8282:8282"
+  hostname: zookeeper
+eureka:
+  image: "docker.liveopslabs.com/eureka"
+  ports:
+    - "8080:8080"
+    - "8009:8009"
+  hostname: eureka
+configurator:
+  image: "docker.liveopslabs.com/configurator"
+  environment:
+    ENVIRONMENT: docker
+  links:
+    - cassandra
+    - eureka
+  ports:
+    - "8082:8080"
+  hostname: configurator
+presence:
+  image: "docker.liveopslabs.com/presence"
+  environment:
+    ENVIRONMENT: docker-dev
+  links:
+    - zookeeper
+    - eureka
+    - cassandra
+  ports:
+    - "8083:9004"
+  hostname: presence
+edge:
+  image: "docker.liveopslabs.com/edge"
+  environment:
+    ENVIRONMENT: docker
+  links:
+    - cassandra
+    - eureka
+    - configurator
+    - presence
+  ports:
+    - "8084:8080"
+    - "9080:9080"
+  hostname: edge

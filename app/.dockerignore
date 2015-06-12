@@ -1,0 +1,15 @@
+app/
+node_modules/
+test/
+.bowerrc
+.gitignore
+.jshintignore
+.jshintrc
+.scss-lint.yml
+README.md
+bower.json
+docker-compose.yml
+gulpfile.js
+karma.conf.js
+nginx.conf
+package.json

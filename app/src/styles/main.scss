@@ -1,0 +1,110 @@
+@import "reset";
+
+body {
+  min-width: 1000px;
+}
+
+.site-wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding-left: 240px;
+}
+
+.general-information {
+  padding: 10px;
+
+  h3 {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.collapsible-header {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.sends {
+  padding: 10px;
+
+  ul {
+    margin: 0 auto;
+    list-style: default;
+
+    li {
+      margin: 4px 0;
+    }
+
+
+    li.send {
+      i {
+        padding-left: 30px;
+      }
+      span {
+        padding-left: 30px;
+      }
+      span.send-comment {
+        padding: 0;
+        font-style: italic;
+        color: green;
+      }
+    }
+  }
+}
+
+.grey-icon {
+  color: #d9d9d9;
+}
+
+.upsize-icon {
+  font-size: 1.9rem;
+}
+
+header {
+  padding-left: 240px;
+}
+
+nav.top-nav {
+  height: 123px;
+}
+
+nav.top-nav a.page-title {
+  line-height: 122px;
+  font-size: 48px;
+  padding-left: 77px;
+}
+
+ul.side-nav li.logo {
+  padding: 12px 0;
+  text-align: center;
+}
+
+ul.side-nav li.bold {
+  font-weight: bold;
+
+  a.collapsible-header {
+    line-height: 64px;
+  }
+
+  li.nav-location {
+    font-weight: 400;
+  }
+}
+
+ul.side-nav li.logo a.brand-logo {
+  display: inline-block;
+}
+
+ul.side-nav li.logo img {
+  max-height: 95px;
+  max-width: 95px;
+}
+
+ul.side-nav li.logo {
+  border-bottom: 1px solid #d9d9d9;
+}
