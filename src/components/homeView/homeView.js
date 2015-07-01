@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  function homeController() {
+  function homeViewController() {
     $('.collapsible')
       .collapsible({
         accordion: true
@@ -9,5 +9,5 @@
   }
 
   angular.module('cec')
-    .controller('homeController', homeController);
+    .controller('homeViewController', homeViewController);
 })();

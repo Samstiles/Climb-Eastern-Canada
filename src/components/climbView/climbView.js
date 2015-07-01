@@ -1,11 +1,11 @@
 (function () {
   'use strict';
 
-  function climbController() {
+  function climbViewController() {
     $('.collapsible')
       .collapsible();
   }
 
   angular.module('cec')
-    .controller('climbController', climbController);
+    .controller('climbViewController', climbViewController);
 })();

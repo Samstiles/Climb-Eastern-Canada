@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  function StateListener($rootScope) {
+  function StateListenerService($rootScope) {
     return {
       reportStateChangeErrors: function () {
         $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
@@ -28,19 +28,19 @@
       },
 
       reportStateNotFoundErrors: function () {
-        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-          // console.log('Beginning transition to state: \'' + toState.name + '\'...');
-          // console.log('Additional debugging:\n\n');
-          // console.log('-> event:', event);
-          // console.log('-> toState:', toState);
-          // console.log('-> toParams:', toParams);
-          // console.log('-> fromState:', fromState);
-          // console.log('-> fromParams:', fromParams);
-        });
+        // $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+        //   console.log('Beginning transition to state: \'' + toState.name + '\'...');
+        //   console.log('Additional debugging:\n\n');
+        //   console.log('-> event:', event);
+        //   console.log('-> toState:', toState);
+        //   console.log('-> toParams:', toParams);
+        //   console.log('-> fromState:', fromState);
+        //   console.log('-> fromParams:', fromParams);
+        // });
       }
     };
   }
 
   angular.module('cec')
-    .service('StateListener', StateListener);
+    .service('StateListenerService', StateListenerService);
 })();
