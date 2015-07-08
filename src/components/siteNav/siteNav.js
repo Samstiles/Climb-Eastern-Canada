@@ -5,7 +5,7 @@
     return {
       scope: {},
       restrict: 'E',
-      templateUrl: 'templates/siteNav.html',
+      templateUrl: 'components/siteNav/siteNav.html',
       replace: true,
       link: function () {},
       controller: function ($scope) {
@@ -17,6 +17,5 @@
     };
   }
 
-  angular.module('cec')
-    .directive('siteNav', siteNav);
+  angular.module('cec').directive('siteNav', siteNav);
 })();
