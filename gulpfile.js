@@ -8,11 +8,11 @@ var argv = require('yargs')
   .argv;
 
 var paths = {
-  script: ['src/**/*.js', '!src/bower_components/**/*.js'],
+  script: ['src/**/*.js', '!src/lib/**/*.js'],
   scss: ['src/styles/**/*.scss'],
   styles: 'src/styles/',
-  templates: ['src/**/*.html', '!src/index.html', '!src/bower_components/**/*.html'],
-  html: ['src/**/*.html', '!src/bower_components/**/*.html'],
+  templates: ['src/**/*.html', '!src/index.html', '!src/lib/**/*.html'],
+  html: ['src/**/*.html', '!src/lib/**/*.html'],
   images: ['src/images/*'],
   dist: 'dist'
 };
